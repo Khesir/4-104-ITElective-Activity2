@@ -10,6 +10,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="data\StarbukoImages\StarbukoImages\chocolate_chip.jpg" />
+    <None Remove="data\StarbukoImages\StarbukoImages\dark_caramel_frappucino.jpg" />
+    <None Remove="data\StarbukoImages\StarbukoImages\dragon_drink.jpeg" />
+    <None Remove="data\StarbukoImages\StarbukoImages\matcha_latte.jpeg" />
+    <None Remove="data\StarbukoImages\StarbukoImages\pink_drink.jpeg" />
+    <None Remove="data\StarbukoImages\StarbukoImages\strawberries_cream.jpg" />
+    <None Remove="data\StarbukoImages\StarbukoImages\strawberry_acai.jpeg" />
+    <None Remove="data\StarbukoImages\StarbukoImages\xoxo_frappucino.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -26,6 +37,33 @@
 
   <ItemGroup>
     <None Include="data\StarbukoImages\StarbukoImages\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="data\StarbukoImages\StarbukoImages\chocolate_chip.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\StarbukoImages\StarbukoImages\dark_caramel_frappucino.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\StarbukoImages\StarbukoImages\dragon_drink.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\StarbukoImages\StarbukoImages\matcha_latte.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\StarbukoImages\StarbukoImages\pink_drink.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\StarbukoImages\StarbukoImages\strawberries_cream.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\StarbukoImages\StarbukoImages\strawberry_acai.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\StarbukoImages\StarbukoImages\xoxo_frappucino.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

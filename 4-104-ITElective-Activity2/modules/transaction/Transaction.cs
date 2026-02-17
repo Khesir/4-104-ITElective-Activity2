@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace _4_104_ITElective_Activity2.domain.entity
+namespace _4_104_ITElective_Activity2.modules.transaction
 {
     internal class Transaction
     {
