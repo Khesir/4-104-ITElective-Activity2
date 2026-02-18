@@ -1,5 +1,6 @@
 ﻿using _4_104_ITElective_Activity2.core;
 using _4_104_ITElective_Activity2.modules.item;
+using _4_104_ITElective_Activity2.modules.transaction;
 using _4_104_ITElective_Activity2.modules.transactionItem;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,11 @@ namespace _4_104_ITElective_Activity2.forms
 {
     public partial class MainForm : Form
     {
+        // Depenencies
+        // Later will be hold under core di manager
         private ItemService _service;
+        private TransactionItemService _transactionItemService;
+
         private BindingList<TransactionItem> _transactionItems;
         private CultureInfo phCulture = new CultureInfo("en-PH");
 
@@ -26,7 +31,7 @@ namespace _4_104_ITElective_Activity2.forms
             InitializeTransactionGrid();
 
             _service = new ItemService(new ItemRepository()); // thjis can be improved by cached persistence, but for the sake of simplicity, we will just create a new instance here
-
+            _transactionItemService = new TransactionItemService(new TransactionItemRepository());
             // handle resizing of itemSelector to make sure the userControl inside it will also resize
             itemSelector.Resize += (s, e) =>
             {
@@ -35,7 +40,7 @@ namespace _4_104_ITElective_Activity2.forms
                     c.Width = itemSelector.ClientSize.Width - 20;
                 }
             };
-            EventBus.Subscribe<AddItemToCartDTO>(OnItemAdded);
+            EventBus.Subscribe<UpdateTransactionItemDTO>(OnItemAdded);
             EventBus.Subscribe<LoadItemsResultDTO>(OnItemsLoaded);
 
             EventBus.Publish(new LoadItemsRequestDTO());
@@ -60,6 +65,12 @@ namespace _4_104_ITElective_Activity2.forms
                 Name = nameof(TransactionItem.name),
                 HeaderText = "Item Name",
                 DataPropertyName = nameof(TransactionItem.name)
+            });
+            transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = nameof(TransactionItem.cupSize),
+                HeaderText = "Size",
+                DataPropertyName = nameof(TransactionItem.cupSize)
             });
 
             transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -97,28 +108,20 @@ namespace _4_104_ITElective_Activity2.forms
                 itemSelector.Controls.Add(card);
             }
         }
-        private void OnItemAdded(AddItemToCartDTO dto)
+        private void OnItemAdded(UpdateTransactionItemDTO dto)
         {
-            var item = dto.Item;
-            var existingItem = _transactionItems.FirstOrDefault(t => t.id == item.id);
-            if (existingItem != null)
+            _transactionItems.Clear();
+
+            foreach (var item in dto.TransactionItem)
             {
-                existingItem.quantity += 1;
-                _transactionItems.ResetBindings(); // Notify the DataGridView to refresh the display
+                _transactionItems.Add(item);
             }
-            else
-            {
-                _transactionItems.Add(new TransactionItem
-                {
-                    id = _transactionItems.Count + 1,
-                    itemId = (int)item.id!,
-                    name = item.name,
-                    price = item.price,
-                    quantity = 1,
-                });
-            }
-            // Update total price for all items
             UpdateTotalPrice();
+        }
+
+        private void UpdateTransactionGrid()
+        {
+            transactionGridView.Refresh();
         }
         private void UpdateTotalPrice()
         {
@@ -130,7 +133,7 @@ namespace _4_104_ITElective_Activity2.forms
         }
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
-            EventBus.Unsubscribe<AddItemToCartDTO>(OnItemAdded);
+            EventBus.Unsubscribe<UpdateTransactionItemDTO>(OnItemAdded);
             EventBus.Unsubscribe<LoadItemsResultDTO>(OnItemsLoaded);
             base.OnFormClosed(e);
         }
@@ -161,6 +164,11 @@ namespace _4_104_ITElective_Activity2.forms
                 changeLabel.Text = (0m).ToString("C", phCulture);
                 changeLabel.ForeColor = System.Drawing.Color.Yellow;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EventBus.Publish(new CreatedNewTransactionDTO());
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using _4_104_ITElective_Activity2.core;
 using _4_104_ITElective_Activity2.modules.item;
+using _4_104_ITElective_Activity2.modules.transactionItem;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,8 +43,34 @@ namespace _4_104_ITElective_Activity2
         }
         private void ItemCard_Click(object sender, EventArgs e)
         {
-            var dto = new AddItemToCartDTO { Item = item };
-            EventBus.Publish(dto);
+            var resullt = MessageBox.Show(
+                "Choose Cup Size:\n"
+                + "Yes - Grande (+20)\n"
+                + "No - Venti (+30)\n"
+                + "Cancel - Regular\n",
+                "Select Cup Size", MessageBoxButtons.YesNoCancel);
+            var cup_size = resullt switch
+            {
+                DialogResult.Yes => "Grande",
+                DialogResult.No => "Venti",
+                DialogResult.Cancel => "Regular",
+                _ => "Grande"
+            };
+            // Sends an event if we create new transactionItem
+            var entity = new TransactionItem
+            {
+                itemId = (int)item.id!,
+                name = item.name,
+                quantity = 1,
+                price = item.price + (cup_size == "Grande" ? 20 : cup_size == "Venti" ? 30 : 0),
+                cupSize = TransactionItem.fromString(cup_size),
+            };
+            entity.UpdateTotalPrice();
+            var transactionItemDTO = new AddedTransactionItemDTO { TransactionItem = entity };
+            EventBus.Publish(transactionItemDTO);
+
+            //var dto = new AddItemToCartDTO { TransactionItem =  };
+            //EventBus.Publish(dto);
         }
     }
 }

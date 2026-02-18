@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _4_104_ITElective_Activity2.modules.transactionItem;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -20,9 +21,5 @@ namespace _4_104_ITElective_Activity2.modules.item
     public class LoadItemsResultDTO
     {
         public List<Item> Items = [];
-    }
-    public class AddItemToCartDTO
-    {
-        public required Item Item;
     }
 }

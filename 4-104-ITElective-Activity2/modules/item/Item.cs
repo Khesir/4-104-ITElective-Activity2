@@ -10,7 +10,6 @@ namespace _4_104_ITElective_Activity2.modules.item
         public string name { get; set; }
         public double price { get; set; }
         public string imagePath { get; set; }
-
         public Item(string name, double price, string imagePath)
         {
             this.name = name;
@@ -18,5 +17,4 @@ namespace _4_104_ITElective_Activity2.modules.item
             this.imagePath = imagePath;
         }
     }
-
 }
