@@ -136,6 +136,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.FixedPanel = FixedPanel.Panel1;
             splitContainer1.Location = new Point(0, 91);
             splitContainer1.Name = "splitContainer1";
             // 
@@ -147,7 +148,7 @@
             // 
             splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
             splitContainer1.Size = new Size(800, 315);
-            splitContainer1.SplitterDistance = 266;
+            splitContainer1.SplitterDistance = 322;
             splitContainer1.TabIndex = 2;
             // 
             // itemSelector
@@ -158,23 +159,23 @@
             itemSelector.FlowDirection = FlowDirection.TopDown;
             itemSelector.Location = new Point(0, 0);
             itemSelector.Name = "itemSelector";
-            itemSelector.Size = new Size(266, 315);
+            itemSelector.Size = new Size(322, 315);
             itemSelector.TabIndex = 0;
             itemSelector.WrapContents = false;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(panel3, 0, 0);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 71.98795F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 28.0120487F));
-            tableLayoutPanel1.Size = new Size(530, 315);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel1.Size = new Size(474, 315);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // panel3
@@ -183,7 +184,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(524, 220);
+            panel3.Size = new Size(468, 209);
             panel3.TabIndex = 0;
             // 
             // transactionGridView
@@ -192,7 +193,7 @@
             transactionGridView.Dock = DockStyle.Fill;
             transactionGridView.Location = new Point(0, 0);
             transactionGridView.Name = "transactionGridView";
-            transactionGridView.Size = new Size(524, 220);
+            transactionGridView.Size = new Size(468, 209);
             transactionGridView.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -202,11 +203,11 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.60305F));
             tableLayoutPanel3.Controls.Add(tableLayoutPanel4, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 229);
+            tableLayoutPanel3.Location = new Point(3, 218);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(524, 83);
+            tableLayoutPanel3.Size = new Size(468, 94);
             tableLayoutPanel3.TabIndex = 1;
             // 
             // tableLayoutPanel4
@@ -221,13 +222,13 @@
             tableLayoutPanel4.Controls.Add(changeLabel, 1, 2);
             tableLayoutPanel4.Controls.Add(paymentTextBox, 1, 1);
             tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(178, 3);
+            tableLayoutPanel4.Location = new Point(159, 3);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 3;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(343, 77);
+            tableLayoutPanel4.Size = new Size(306, 88);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // label2
@@ -238,7 +239,7 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(165, 28);
+            label2.Size = new Size(147, 34);
             label2.TabIndex = 0;
             label2.Text = "Total Amount";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -249,9 +250,9 @@
             priceLabel.Dock = DockStyle.Fill;
             priceLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             priceLabel.ForeColor = Color.White;
-            priceLabel.Location = new Point(174, 0);
+            priceLabel.Location = new Point(156, 0);
             priceLabel.Name = "priceLabel";
-            priceLabel.Size = new Size(166, 28);
+            priceLabel.Size = new Size(147, 34);
             priceLabel.TabIndex = 1;
             priceLabel.Text = "0";
             priceLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -262,9 +263,9 @@
             label4.Dock = DockStyle.Fill;
             label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(3, 28);
+            label4.Location = new Point(3, 34);
             label4.Name = "label4";
-            label4.Size = new Size(165, 28);
+            label4.Size = new Size(147, 34);
             label4.TabIndex = 2;
             label4.Text = "Amount Tendered";
             label4.TextAlign = ContentAlignment.MiddleCenter;
@@ -275,9 +276,9 @@
             label5.Dock = DockStyle.Fill;
             label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(3, 56);
+            label5.Location = new Point(3, 68);
             label5.Name = "label5";
-            label5.Size = new Size(165, 21);
+            label5.Size = new Size(147, 20);
             label5.TabIndex = 3;
             label5.Text = "Change";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -288,9 +289,9 @@
             changeLabel.Dock = DockStyle.Fill;
             changeLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             changeLabel.ForeColor = Color.Gold;
-            changeLabel.Location = new Point(174, 56);
+            changeLabel.Location = new Point(156, 68);
             changeLabel.Name = "changeLabel";
-            changeLabel.Size = new Size(166, 21);
+            changeLabel.Size = new Size(147, 20);
             changeLabel.TabIndex = 4;
             changeLabel.Text = "0";
             changeLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -299,10 +300,10 @@
             // 
             paymentTextBox.Dock = DockStyle.Fill;
             paymentTextBox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            paymentTextBox.Location = new Point(174, 31);
+            paymentTextBox.Location = new Point(156, 37);
             paymentTextBox.Name = "paymentTextBox";
             paymentTextBox.PlaceholderText = "Amend amount";
-            paymentTextBox.Size = new Size(166, 29);
+            paymentTextBox.Size = new Size(147, 29);
             paymentTextBox.TabIndex = 5;
             paymentTextBox.TextChanged += paymentTextBox_TextChanged;
             paymentTextBox.KeyPress += paymentTextBox_KeyPress;

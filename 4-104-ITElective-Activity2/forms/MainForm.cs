@@ -53,38 +53,42 @@ namespace _4_104_ITElective_Activity2.forms
             transactionGridView.AllowUserToAddRows = false;
             transactionGridView.Columns.Clear();
 
-            transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = nameof(TransactionItem.id),
-                HeaderText = "ID",
-                DataPropertyName = nameof(TransactionItem.id)
-            });
+            //transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
+            //{
+            //    Name = nameof(TransactionItem.id),
+            //    HeaderText = "ID",
+            //    DataPropertyName = nameof(TransactionItem.id)
+            //});
 
             transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = nameof(TransactionItem.name),
                 HeaderText = "Item Name",
-                DataPropertyName = nameof(TransactionItem.name)
+                DataPropertyName = nameof(TransactionItem.name),
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
             });
             transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = nameof(TransactionItem.cupSize),
                 HeaderText = "Size",
-                DataPropertyName = nameof(TransactionItem.cupSize)
+                DataPropertyName = nameof(TransactionItem.cupSize),
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
             });
 
             transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = nameof(TransactionItem.quantity),
                 HeaderText = "Qty",
-                DataPropertyName = nameof(TransactionItem.quantity)
+                DataPropertyName = nameof(TransactionItem.quantity),
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
             });
 
             transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = nameof(TransactionItem.price),
                 HeaderText = "Price",
-                DataPropertyName = nameof(TransactionItem.price)
+                DataPropertyName = nameof(TransactionItem.price),
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
             });
 
             transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -92,6 +96,7 @@ namespace _4_104_ITElective_Activity2.forms
                 Name = nameof(TransactionItem.totalPrice),
                 HeaderText = "Total",
                 DataPropertyName = nameof(TransactionItem.totalPrice),
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 ReadOnly = true
             });
 
@@ -104,7 +109,6 @@ namespace _4_104_ITElective_Activity2.forms
             {
                 // add userControl compoment to listView
                 var card = new ItemCard(item);
-
                 itemSelector.Controls.Add(card);
             }
         }
@@ -168,6 +172,7 @@ namespace _4_104_ITElective_Activity2.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            paymentTextBox.Text = "";
             EventBus.Publish(new CreatedNewTransactionDTO());
         }
     }

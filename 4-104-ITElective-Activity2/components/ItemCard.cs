@@ -13,6 +13,11 @@ namespace _4_104_ITElective_Activity2
 {
     public partial class ItemCard : UserControl
     {
+        // Expose usercontrol components as properties for easier access
+        // Remove item to decouple the card from the item module,
+        // but for simplicity we will just keep a reference to
+        // the item here
+
         private Item item;
         public ItemCard(Item item)
         {
@@ -32,6 +37,7 @@ namespace _4_104_ITElective_Activity2
             productPrice.Text = $"₱{item.price}";
             productName.Text = item.name;
         }
+        
         private void AddClickEvent(Control parent, EventHandler handler)
         {
             parent.Click += handler;
@@ -68,9 +74,6 @@ namespace _4_104_ITElective_Activity2
             entity.UpdateTotalPrice();
             var transactionItemDTO = new AddedTransactionItemDTO { TransactionItem = entity };
             EventBus.Publish(transactionItemDTO);
-
-            //var dto = new AddItemToCartDTO { TransactionItem =  };
-            //EventBus.Publish(dto);
         }
     }
 }
