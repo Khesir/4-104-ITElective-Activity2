@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS transactions (
+    id           INT AUTO_INCREMENT PRIMARY KEY,
+    total_amount DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    created_at   TIMESTAMP      DEFAULT CURRENT_TIMESTAMP
+);
