@@ -360,7 +360,7 @@
         private Label changeLabel;
         private TextBox paymentTextBox;
         private FlowLayoutPanel itemSelector;
-        private ItemCard itemCard1;
-        private ItemCard itemCard2;
+        private ProductCard itemCard1;
+        private ProductCard itemCard2;
     }
 }

@@ -18,7 +18,7 @@ namespace _4_104_ITElective_Activity2.forms
     {
         // Depenencies
         // Later will be hold under core di manager
-        private ItemService _service;
+        private ProductService _service;
         private TransactionItemService _transactionItemService;
 
         private BindingList<TransactionItem> _transactionItems;
@@ -30,7 +30,7 @@ namespace _4_104_ITElective_Activity2.forms
 
             InitializeTransactionGrid();
 
-            _service = new ItemService(new ItemRepository()); // thjis can be improved by cached persistence, but for the sake of simplicity, we will just create a new instance here
+            _service = new ProductService(new ProductRepository()); // thjis can be improved by cached persistence, but for the sake of simplicity, we will just create a new instance here
             _transactionItemService = new TransactionItemService(new TransactionItemRepository());
             // handle resizing of itemSelector to make sure the userControl inside it will also resize
             itemSelector.Resize += (s, e) =>
@@ -108,7 +108,7 @@ namespace _4_104_ITElective_Activity2.forms
             foreach (var item in result.Items)
             {
                 // add userControl compoment to listView
-                var card = new ItemCard(item);
+                var card = new ProductCard(item);
                 itemSelector.Controls.Add(card);
             }
         }

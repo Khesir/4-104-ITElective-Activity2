@@ -11,15 +11,15 @@ using System.Windows.Forms;
 
 namespace _4_104_ITElective_Activity2
 {
-    public partial class ItemCard : UserControl
+    public partial class ProductCard : UserControl
     {
         // Expose usercontrol components as properties for easier access
         // Remove item to decouple the card from the item module,
         // but for simplicity we will just keep a reference to
         // the item here
 
-        private Item item;
-        public ItemCard(Item item)
+        private Product item;
+        public ProductCard(Product item)
         {
             InitializeComponent();
             AddClickEvent(this, ItemCard_Click); // recirsively add click event to all child controls so that the whole card is clickable

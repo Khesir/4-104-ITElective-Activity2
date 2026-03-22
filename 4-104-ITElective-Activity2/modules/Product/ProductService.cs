@@ -5,11 +5,11 @@ using System.Text;
 
 namespace _4_104_ITElective_Activity2.modules.item
 {
-    public class ItemService
+    public class ProductService
     {
-        private readonly ItemRepository _repository;
+        private readonly ProductRepository _repository;
 
-        public ItemService(ItemRepository repository)
+        public ProductService(ProductRepository repository)
         {
             _repository = repository;
             
@@ -26,7 +26,7 @@ namespace _4_104_ITElective_Activity2.modules.item
             if (string.IsNullOrEmpty(dto.Name)) return;
             if (dto.Price == 0) return;
 
-            var entity = new Item(dto.Name, dto.Price, dto.ImagePath);
+            var entity = new Product(dto.Name, dto.Price, dto.ImagePath);
             _repository.Add(entity);
 
             EventBus.Publish(new AddItemResultDTO { Success = true, Message = "Item added successfully" });

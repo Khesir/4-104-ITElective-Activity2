@@ -20,6 +20,6 @@ namespace _4_104_ITElective_Activity2.modules.item
     public class LoadItemsRequestDTO { }
     public class LoadItemsResultDTO
     {
-        public List<Item> Items = [];
+        public List<Product> Items = [];
     }
 }

@@ -47,11 +47,11 @@ namespace _4_104_ITElective_Activity2.core.Database
                     var checksum = GenerateChecksum(file);
                     if (IsApplied(conn, fileName, checksum))
                     {
-                        Console.WriteLine($"⏭️ Skipped: {fileName}");
+                        Console.WriteLine($"Skipped: {fileName}");
                         continue;
                     }
 
-                    Console.WriteLine($"⚙️ Applying: {fileName}");
+                    Console.WriteLine($"Applying: {fileName}");
 
                     ApplyMigration(conn, file, fileName, checksum);
 
@@ -59,7 +59,7 @@ namespace _4_104_ITElective_Activity2.core.Database
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Migration process failed.");
+                Console.WriteLine("Migration process failed.");
                 Console.WriteLine(ex.Message);
             }
             finally
@@ -138,13 +138,13 @@ namespace _4_104_ITElective_Activity2.core.Database
 
                 tx.Commit();
 
-                Console.WriteLine($"✅ Applied: {name}");
+                Console.WriteLine($"Applied: {name}");
             }
             catch (Exception ex)
             {
                 tx.Rollback();
 
-                Console.WriteLine($"❌ Failed: {name}");
+                Console.WriteLine($"Failed: {name}");
                 Console.WriteLine(ex.Message);
 
                 throw;
@@ -163,7 +163,10 @@ namespace _4_104_ITElective_Activity2.core.Database
         private void AcquireLock(MySqlConnection conn)
         {
             using var cmd = new MySqlCommand("SELECT GET_LOCK('migration_lock', 10);", conn);
-            cmd.ExecuteScalar();
+            var result = cmd.ExecuteScalar();
+
+            if (result == null || Convert.ToInt32(result) != 1)
+                throw new Exception("Could not acquire migration lock. Another instance may be running migrations.");
         }
 
         private void ReleaseLock(MySqlConnection conn)

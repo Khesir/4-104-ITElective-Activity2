@@ -23,11 +23,11 @@ namespace _4_104_ITElective_Activity2.core.Database
             {
                 _migrationService.Run();
 
-                Console.WriteLine("✅ Migration process completed.");
+                Console.WriteLine("Migration process completed.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Migration process failed.");
+                Console.WriteLine("Migration process failed.");
                 Console.WriteLine(ex.Message);
             }
 

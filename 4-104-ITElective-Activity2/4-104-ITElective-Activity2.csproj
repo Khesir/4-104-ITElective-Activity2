@@ -10,23 +10,14 @@
   </PropertyGroup>
 	
 	<ItemGroup>
-		<None Update="appsettings.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="appsettings.Local.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-  
-	<ItemGroup>
-    <None Remove="data\StarbukoImages\StarbukoImages\chocolate_chip.jpg" />
-    <None Remove="data\StarbukoImages\StarbukoImages\dark_caramel_frappucino.jpg" />
-    <None Remove="data\StarbukoImages\StarbukoImages\dragon_drink.jpeg" />
-    <None Remove="data\StarbukoImages\StarbukoImages\matcha_latte.jpeg" />
-    <None Remove="data\StarbukoImages\StarbukoImages\pink_drink.jpeg" />
-    <None Remove="data\StarbukoImages\StarbukoImages\strawberries_cream.jpg" />
-    <None Remove="data\StarbukoImages\StarbukoImages\strawberry_acai.jpeg" />
-    <None Remove="data\StarbukoImages\StarbukoImages\xoxo_frappucino.jpeg" />
+    <None Remove="Data\StarbukoImages\StarbukoImages\chocolate_chip.jpg" />
+    <None Remove="Data\StarbukoImages\StarbukoImages\dark_caramel_frappucino.jpg" />
+    <None Remove="Data\StarbukoImages\StarbukoImages\dragon_drink.jpeg" />
+    <None Remove="Data\StarbukoImages\StarbukoImages\matcha_latte.jpeg" />
+    <None Remove="Data\StarbukoImages\StarbukoImages\pink_drink.jpeg" />
+    <None Remove="Data\StarbukoImages\StarbukoImages\strawberries_cream.jpg" />
+    <None Remove="Data\StarbukoImages\StarbukoImages\strawberry_acai.jpeg" />
+    <None Remove="Data\StarbukoImages\StarbukoImages\xoxo_frappucino.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,38 +36,41 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="data\StarbukoImages\StarbukoImages\.DS_Store" />
+    <None Include="Data\StarbukoImages\StarbukoImages\.DS_Store" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="data\StarbukoImages\StarbukoImages\chocolate_chip.jpg">
+    <Content Include="Data\StarbukoImages\StarbukoImages\chocolate_chip.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\StarbukoImages\StarbukoImages\dark_caramel_frappucino.jpg">
+    <Content Include="Data\StarbukoImages\StarbukoImages\dark_caramel_frappucino.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\StarbukoImages\StarbukoImages\dragon_drink.jpeg">
+    <Content Include="Data\StarbukoImages\StarbukoImages\dragon_drink.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\StarbukoImages\StarbukoImages\matcha_latte.jpeg">
+    <Content Include="Data\StarbukoImages\StarbukoImages\matcha_latte.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\StarbukoImages\StarbukoImages\pink_drink.jpeg">
+    <Content Include="Data\StarbukoImages\StarbukoImages\pink_drink.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\StarbukoImages\StarbukoImages\strawberries_cream.jpg">
+    <Content Include="Data\StarbukoImages\StarbukoImages\strawberries_cream.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\StarbukoImages\StarbukoImages\strawberry_acai.jpeg">
+    <Content Include="Data\StarbukoImages\StarbukoImages\strawberry_acai.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\StarbukoImages\StarbukoImages\xoxo_frappucino.jpeg">
+    <Content Include="Data\StarbukoImages\StarbukoImages\xoxo_frappucino.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="core\Migrations\" />
+    <Content Include="Core\Migrations\*.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>Migrations\%(Filename)%(Extension)</TargetPath>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
