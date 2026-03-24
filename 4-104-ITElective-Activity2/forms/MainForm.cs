@@ -1,4 +1,5 @@
-﻿using _4_104_ITElective_Activity2.core;
+﻿using _4_104_ITElective_Activity2.Components;
+using _4_104_ITElective_Activity2.core;
 using _4_104_ITElective_Activity2.modules.item;
 using _4_104_ITElective_Activity2.modules.transaction;
 using _4_104_ITElective_Activity2.modules.transactionItem;
@@ -30,16 +31,6 @@ namespace _4_104_ITElective_Activity2.forms
 
             InitializeTransactionGrid();
 
-            _service = new ProductService(new ProductRepository()); // thjis can be improved by cached persistence, but for the sake of simplicity, we will just create a new instance here
-            _transactionItemService = new TransactionItemService(new TransactionItemRepository());
-            // handle resizing of itemSelector to make sure the userControl inside it will also resize
-            itemSelector.Resize += (s, e) =>
-            {
-                foreach (Control c in itemSelector.Controls)
-                {
-                    c.Width = itemSelector.ClientSize.Width - 20;
-                }
-            };
             EventBus.Subscribe<UpdateTransactionItemDTO>(OnItemAdded);
             EventBus.Subscribe<LoadItemsResultDTO>(OnItemsLoaded);
 
@@ -53,12 +44,37 @@ namespace _4_104_ITElective_Activity2.forms
             transactionGridView.AllowUserToAddRows = false;
             transactionGridView.Columns.Clear();
 
-            //transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
-            //{
-            //    Name = nameof(TransactionItem.id),
-            //    HeaderText = "ID",
-            //    DataPropertyName = nameof(TransactionItem.id)
-            //});
+            // ── REQUIRED to override Windows default header styles ──
+            transactionGridView.EnableHeadersVisualStyles = false;
+
+            // ── Header Styling ──────────────────────────────────────
+            transactionGridView.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#07302B");
+            transactionGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Courier New", 10f, FontStyle.Bold);
+            transactionGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            transactionGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            transactionGridView.ColumnHeadersHeight = 42;
+            transactionGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            // ── Row Styling ─────────────────────────────────────────
+            transactionGridView.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#07302B");
+            transactionGridView.DefaultCellStyle.ForeColor = Color.White;
+            transactionGridView.DefaultCellStyle.Font = new Font("Courier New", 9f);
+            transactionGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            transactionGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 213, 79);   // yellow highlight on select
+            transactionGridView.DefaultCellStyle.SelectionForeColor = ColorTranslator.FromHtml("#07302B");
+
+            // ── Alternating Row ─────────────────────────────────────
+            transactionGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(10, 55, 50); // slightly lighter green
+
+            // ── Grid Appearance ─────────────────────────────────────
+            transactionGridView.BackgroundColor = ColorTranslator.FromHtml("#07302B");
+            transactionGridView.BorderStyle = BorderStyle.None;
+            transactionGridView.RowHeadersVisible = false;
+            transactionGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // ── Bottom Border Only (per cell) ───────────────────────
+            transactionGridView.CellBorderStyle = DataGridViewCellBorderStyle.None; // disable default borders
+            transactionGridView.CellPainting += TransactionGrid_CellPainting;
 
             transactionGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -102,15 +118,26 @@ namespace _4_104_ITElective_Activity2.forms
 
             transactionGridView.DataSource = _transactionItems;
         }
+        private void TransactionGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
+
+            // Skip header row top/side — bottom border only on data rows
+            if (e.RowIndex >= 0)
+            {
+                using (Pen pen = new Pen(Color.FromArgb(255, 213, 79), 1))
+                {
+                    Point left = new Point(e.CellBounds.Left, e.CellBounds.Bottom - 1);
+                    Point right = new Point(e.CellBounds.Right - 1, e.CellBounds.Bottom - 1);
+                    e.Graphics.DrawLine(pen, left, right);
+                }
+            }
+
+            e.Handled = true;
+        }
         private void OnItemsLoaded(LoadItemsResultDTO result)
         {
-            // Load items to ListView
-            foreach (var item in result.Items)
-            {
-                // add userControl compoment to listView
-                var card = new ProductCard(item);
-                itemSelector.Controls.Add(card);
-            }
+
         }
         private void OnItemAdded(UpdateTransactionItemDTO dto)
         {
@@ -174,6 +201,21 @@ namespace _4_104_ITElective_Activity2.forms
         {
             paymentTextBox.Text = "";
             EventBus.Publish(new CreatedNewTransactionDTO());
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
