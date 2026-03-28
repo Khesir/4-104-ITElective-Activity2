@@ -17,6 +17,7 @@ namespace _4_104_ITElective_Activity2.modules.item
             EventBus.Subscribe<UpdateItemDTO>(HandleUpdateItem);
             EventBus.Subscribe<LoadItemsRequestDTO>(HandleLoadItems);
         }
+        public List<Product> GetAllProducts() => _repository.GetAll();
 
         private void HandleLoadItems(LoadItemsRequestDTO dto)
         {

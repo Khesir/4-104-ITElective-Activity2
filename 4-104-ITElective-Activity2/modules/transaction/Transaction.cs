@@ -11,6 +11,7 @@ namespace _4_104_ITElective_Activity2.modules.transaction
         private double _totalAmount;
 
         public int? id { get; set; }
+        public int? userId { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
         public List<TransactionItem> items { get; set; } = new();
 

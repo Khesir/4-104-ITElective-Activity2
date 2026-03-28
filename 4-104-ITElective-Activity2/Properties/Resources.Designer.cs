@@ -123,6 +123,16 @@ namespace _4_104_ITElective_Activity2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_2026_02_06_101444 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2026-02-06 101444", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap vecteezy_illustration_vector_graphic_of_logout_icon_exit_icon_eps_20713709_1 {
             get {
                 object obj = ResourceManager.GetObject("vecteezy_illustration-vector-graphic-of-logout-icon-exit-icon-eps_20713709-1", resourceCulture);

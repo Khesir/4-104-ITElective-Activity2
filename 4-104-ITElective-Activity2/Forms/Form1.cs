@@ -3,6 +3,7 @@ using _4_104_ITElective_Activity2.Core;
 using _4_104_ITElective_Activity2.Core.DI;
 using _4_104_ITElective_Activity2.forms;
 using _4_104_ITElective_Activity2.Modules.User;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace _4_104_ITElective_Activity2.Forms
@@ -13,12 +14,16 @@ namespace _4_104_ITElective_Activity2.Forms
     }
     public partial class Form1 : Form
     {
-        private readonly UserRepository _userRepository = ServiceLocator.Get<UserRepository>();
+        private readonly UserRepository _userRepository;
 
         public Form1()
         {
             InitializeComponent();
-            EventBus.Subscribe<LogoutSignal>(OnLogout);
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+            {
+                _userRepository = ServiceLocator.Get<UserRepository>();
+                EventBus.Subscribe<LogoutSignal>(OnLogout);
+            }
         }
         private void OnLogout(LogoutSignal data)
         {

@@ -10,12 +10,13 @@ namespace _4_104_ITElective_Activity2.modules.transaction
         public int Insert(Transaction t)
         {
             const string sql = @"
-                INSERT INTO transactions (total_amount, created_at)
-                VALUES (@totalAmount, @createdAt);
+                INSERT INTO transactions (user_id, total_amount, created_at)
+                VALUES (@userId, @totalAmount, @createdAt);
                 SELECT LAST_INSERT_ID();";
 
             using var conn = GetConnection();
             using var cmd  = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@userId",      (object?)t.userId ?? DBNull.Value);
             cmd.Parameters.AddWithValue("@totalAmount", t.totalAmount);
             cmd.Parameters.AddWithValue("@createdAt",   t.createdAt);
 
@@ -25,7 +26,7 @@ namespace _4_104_ITElective_Activity2.modules.transaction
         public Transaction? SelectById(int id)
         {
             const string sql = @"
-                SELECT id, total_amount, created_at
+                SELECT id, user_id, total_amount, created_at
                 FROM transactions
                 WHERE id = @id
                 LIMIT 1";
@@ -41,7 +42,7 @@ namespace _4_104_ITElective_Activity2.modules.transaction
         public List<Transaction> SelectAll()
         {
             const string sql = @"
-                SELECT id, total_amount, created_at
+                SELECT id, user_id, total_amount, created_at
                 FROM transactions
                 ORDER BY created_at DESC";
 
@@ -56,8 +57,9 @@ namespace _4_104_ITElective_Activity2.modules.transaction
 
         private static Transaction Map(MySqlDataReader r) => new Transaction
         {
-            id          = r.GetInt32("id"),
-            createdAt   = r.GetDateTime("created_at"),
+            id        = r.GetInt32("id"),
+            userId    = r.IsDBNull(r.GetOrdinal("user_id")) ? null : r.GetInt32("user_id"),
+            createdAt = r.GetDateTime("created_at"),
         };
     }
 }

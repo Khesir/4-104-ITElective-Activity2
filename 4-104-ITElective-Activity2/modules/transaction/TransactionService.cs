@@ -13,9 +13,10 @@ namespace _4_104_ITElective_Activity2.modules.transaction
         {
             _repository = repository;
             _transactionItemRepository = itemRepository;
-            
+
             //EventBus.Subscribe<AddTransactionDTO>(HandleAddTransaction);
             //EventBus.Subscribe<LoadTransactionsRequestDTO>(HandleLoadTransactions);
         }
+        public List<Transaction> GetAllTransactions() => _repository.GetAll();
     }
 }

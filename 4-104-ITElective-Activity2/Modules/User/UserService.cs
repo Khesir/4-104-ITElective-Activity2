@@ -17,5 +17,9 @@ namespace _4_104_ITElective_Activity2.Modules.User
             //EventBus.Subscribe<AddUserDTO>(HandleAddUser);
             //EventBus.Subscribe<LoadUsersRequestDTO>(HandleLoadUsers);
         }
+        public List<User> GetAllUsers()
+        {
+            return _repository.GetAll();
+        }
     }
 }

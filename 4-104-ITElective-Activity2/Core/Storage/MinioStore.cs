@@ -24,6 +24,7 @@ namespace _4_104_ITElective_Activity2.Core.Storage
                 .WithEndpoint(endpoint)
                 .WithCredentials(accessKey, secretKey)
                 .Build();
+            Console.WriteLine($"Minio Service Running Healthy -- {endpoint}");
         }
 
         /// <summary>

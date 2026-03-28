@@ -8,27 +8,31 @@ using System.Windows.Forms;
 
 namespace _4_104_ITElective_Activity2.Components
 {
-    public partial class ProductCard : UserControl
+    public partial class AdminSideBarItem : UserControl
     {
-        private double price;
+        private string id;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public double Price
+        public string Id
         {
-            get => price;
-            set             {
-                price = value;
-                productPrice.Text = price.ToString("C");
-            }
+            get => id;
+            set => id = value;
         }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Title
         {
-            get => productName.Text;
-            set => productName.Text = value;
+            get => BarTitle.Text;
+            set => BarTitle.Text = value;
         }
 
-        public ProductCard()
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public string Description
+        {
+            get => BarDesc.Text;
+            set => BarDesc.Text = value;
+        }
+
+        public AdminSideBarItem()
         {
             InitializeComponent();
         }

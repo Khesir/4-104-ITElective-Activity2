@@ -1,0 +1,2 @@
+ALTER TABLE products
+    ADD COLUMN is_available TINYINT(1) NOT NULL DEFAULT 1;

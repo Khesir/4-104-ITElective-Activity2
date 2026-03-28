@@ -24,7 +24,7 @@ namespace _4_104_ITElective_Activity2.modules.item
 
         public List<Product> SelectAll()
         {
-            const string sql = "SELECT id, name, price, image_path FROM products ORDER BY id";
+            const string sql = "SELECT id, name, price, image_path, is_available FROM products ORDER BY id";
 
             using var conn = GetConnection();
             using var cmd  = new MySqlCommand(sql, conn);
@@ -32,15 +32,13 @@ namespace _4_104_ITElective_Activity2.modules.item
 
             var list = new List<Product>();
             while (reader.Read())
-            {
                 list.Add(Map(reader));
-            }
             return list;
         }
 
         public Product? SelectById(int id)
         {
-            const string sql = "SELECT id, name, price, image_path FROM products WHERE id = @id LIMIT 1";
+            const string sql = "SELECT id, name, price, image_path, is_available FROM products WHERE id = @id LIMIT 1";
 
             using var conn = GetConnection();
             using var cmd  = new MySqlCommand(sql, conn);
@@ -54,15 +52,27 @@ namespace _4_104_ITElective_Activity2.modules.item
         {
             const string sql = @"
                 UPDATE products
-                SET name = @name, price = @price, image_path = @imagePath
+                SET name = @name, price = @price, image_path = @imagePath, is_available = @isAvailable
                 WHERE id = @id";
 
             using var conn = GetConnection();
             using var cmd  = new MySqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@id",        p.id);
-            cmd.Parameters.AddWithValue("@name",      p.name);
-            cmd.Parameters.AddWithValue("@price",     p.price);
-            cmd.Parameters.AddWithValue("@imagePath", p.imagePath);
+            cmd.Parameters.AddWithValue("@id",          p.id);
+            cmd.Parameters.AddWithValue("@name",        p.name);
+            cmd.Parameters.AddWithValue("@price",       p.price);
+            cmd.Parameters.AddWithValue("@imagePath",   p.imagePath);
+            cmd.Parameters.AddWithValue("@isAvailable", p.isAvailable);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void SetAvailability(int id, bool available)
+        {
+            const string sql = "UPDATE products SET is_available = @isAvailable WHERE id = @id";
+
+            using var conn = GetConnection();
+            using var cmd  = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id",          id);
+            cmd.Parameters.AddWithValue("@isAvailable", available);
             cmd.ExecuteNonQuery();
         }
 
@@ -81,6 +91,9 @@ namespace _4_104_ITElective_Activity2.modules.item
             r.GetDouble("price"),
             r.GetString("image_path")
         )
-        { id = r.GetInt32("id") };
+        {
+            id          = r.GetInt32("id"),
+            isAvailable = r.GetBoolean("is_available"),
+        };
     }
 }

@@ -124,6 +124,9 @@
   <data name="logout-8-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logout-8-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="play-buttton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Data\play-buttton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="logout-8-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logout-8-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,7 +139,7 @@
   <data name="chocolate_chip" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Data\StarbukoImages\StarbukoImages\chocolate_chip.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="play-buttton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Data\play-buttton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Screenshot 2026-02-06 101444" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Screenshot 2026-02-06 101444.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

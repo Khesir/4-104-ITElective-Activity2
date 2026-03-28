@@ -151,7 +151,7 @@ namespace _4_104_ITElective_Activity2.forms
                 };
 
                 var captured = product; // capture for closure
-                card.Click += (s, e) => OnProductCardClicked(captured);
+                card.RegisterClickHandler((s, e) => OnProductCardClicked(captured));
 
                 flowLayoutPanel2.Controls.Add(card);
             }

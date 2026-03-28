@@ -15,5 +15,7 @@ namespace _4_104_ITElective_Activity2.Modules.User
 
         public User? FindByCredentials(string username, string password)
             => _datastore.SelectByCredentials(username, password);
+        
+        public List<User> GetAll() => _datastore.SelectAll();
     }
 }
