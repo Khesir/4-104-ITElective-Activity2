@@ -38,9 +38,9 @@
             button1 = new Button();
             tableLayoutPanel5 = new TableLayoutPanel();
             label3 = new Label();
-            textBox1 = new TextBox();
+            usernameTextBox = new TextBox();
             tableLayoutPanel4 = new TableLayoutPanel();
-            textBox2 = new TextBox();
+            passwordTextbox = new TextBox();
             label4 = new Label();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -160,13 +160,14 @@
             button1.TabIndex = 0;
             button1.Text = "Login";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // tableLayoutPanel5
             // 
             tableLayoutPanel5.ColumnCount = 1;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(label3, 0, 0);
-            tableLayoutPanel5.Controls.Add(textBox1, 0, 1);
+            tableLayoutPanel5.Controls.Add(usernameTextBox, 0, 1);
             tableLayoutPanel5.Dock = DockStyle.Fill;
             tableLayoutPanel5.Location = new Point(162, 3);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -188,20 +189,20 @@
             label3.TabIndex = 0;
             label3.Text = "Username";
             // 
-            // textBox1
+            // usernameTextBox
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Font = new Font("Courier New", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(3, 35);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(257, 24);
-            textBox1.TabIndex = 1;
+            usernameTextBox.Dock = DockStyle.Fill;
+            usernameTextBox.Font = new Font("Courier New", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            usernameTextBox.Location = new Point(3, 35);
+            usernameTextBox.Name = "usernameTextBox";
+            usernameTextBox.Size = new Size(257, 24);
+            usernameTextBox.TabIndex = 1;
             // 
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Controls.Add(textBox2, 0, 1);
+            tableLayoutPanel4.Controls.Add(passwordTextbox, 0, 1);
             tableLayoutPanel4.Controls.Add(label4, 0, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(162, 93);
@@ -214,14 +215,15 @@
             tableLayoutPanel4.TabIndex = 2;
             tableLayoutPanel4.Paint += tableLayoutPanel4_Paint;
             // 
-            // textBox2
+            // passwordTextbox
             // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Font = new Font("Courier New", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(3, 39);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(257, 24);
-            textBox2.TabIndex = 2;
+            passwordTextbox.Dock = DockStyle.Fill;
+            passwordTextbox.Font = new Font("Courier New", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            passwordTextbox.Location = new Point(3, 39);
+            passwordTextbox.Name = "passwordTextbox";
+            passwordTextbox.Size = new Size(257, 24);
+            passwordTextbox.TabIndex = 2;
+            passwordTextbox.UseSystemPasswordChar = true;
             // 
             // label4
             // 
@@ -269,8 +271,8 @@
         private TableLayoutPanel tableLayoutPanel4;
         private Button button1;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox usernameTextBox;
         private Label label4;
-        private TextBox textBox2;
+        private TextBox passwordTextbox;
     }
 }

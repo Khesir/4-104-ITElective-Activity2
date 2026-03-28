@@ -1,48 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace _4_104_ITElective_Activity2.modules.item
 {
+    /// <summary>
+    /// Domain accessor for products.
+    /// Contains no SQL — all persistence is delegated to ProductDatastore.
+    /// </summary>
     public class ProductRepository
     {
-        private readonly List<Product> _cache = new();
-        private int _nextId = 1;
-        public ProductRepository()
+        private readonly ProductDatastore _datastore;
+
+        public ProductRepository(ProductDatastore datastore)
         {
-            // Initialize with some dummy data
-            Add(new Product("Creamy Pure Match", 190, "matcha_latte.jpeg"));
-            Add(new Product("Straberry Cream", 150, "strawberries_cream.jpg"));
-            Add(new Product("Dragon Drink", 210, "dragon_drink.jpeg"));
+            _datastore = datastore;
         }
 
         public void Add(Product item)
         {
-            item.id = _nextId++;
-            _cache.Add(item);
+            item.id = _datastore.Insert(item);
         }
+
         public void Update(Product item)
         {
-            var existingItem = GetById((int)item.id!);
-            if (existingItem == null) return;
+            _datastore.Update(item);
+        }
 
-            existingItem.name = item.name;
-            existingItem.price = item.price;
-            existingItem.imagePath = item.imagePath;
-        }
-        public void Delete(int id) {
-
-            var existingItem = GetById(id);
-            if (existingItem == null) return;
-            
-            _cache.Remove(existingItem);
-        }
-        public Product? GetById(int id) { 
-            return _cache.FirstOrDefault(i => i.id == id);
-        }
-        public List<Product> GetAll()
+        public void Delete(int id)
         {
-            return _cache.ToList(); // Just return a copy not the real list address lmao
+            _datastore.Delete(id);
         }
+
+        public Product? GetById(int id) => _datastore.SelectById(id);
+
+        public List<Product> GetAll() => _datastore.SelectAll();
     }
 }

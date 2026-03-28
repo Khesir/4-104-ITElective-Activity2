@@ -31,34 +31,34 @@
             panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            splitContainer1 = new SplitContainer();
-            tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            label1 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             label2 = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
             tableLayoutPanel4 = new TableLayoutPanel();
-            label3 = new Label();
             label4 = new Label();
+            label3 = new Label();
             pictureBox1 = new PictureBox();
+            splitContainer1 = new SplitContainer();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            label1 = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            tabControl1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            tabControl1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -103,90 +103,6 @@
             tableLayoutPanel2.Size = new Size(1107, 75);
             tableLayoutPanel2.TabIndex = 0;
             tableLayoutPanel2.Paint += tableLayoutPanel2_Paint;
-            // 
-            // splitContainer1
-            // 
-            splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(3, 84);
-            splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.Controls.Add(tableLayoutPanel3);
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.Controls.Add(tabControl1);
-            splitContainer1.Size = new Size(1107, 561);
-            splitContainer1.SplitterDistance = 369;
-            splitContainer1.TabIndex = 1;
-            // 
-            // tabControl1
-            // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(734, 561);
-            tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(726, 533);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(0, 0);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 1;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(label1, 0, 0);
-            tableLayoutPanel3.Controls.Add(flowLayoutPanel1, 0, 1);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(0, 0);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 2;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 7.5329566F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 92.46704F));
-            tableLayoutPanel3.Size = new Size(369, 561);
-            tableLayoutPanel3.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Left;
-            label1.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(197, 42);
-            label1.TabIndex = 0;
-            label1.Text = "Users x Products list";
-            label1.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(3, 45);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(363, 513);
-            flowLayoutPanel1.TabIndex = 1;
             // 
             // label2
             // 
@@ -256,19 +172,6 @@
             tableLayoutPanel4.Size = new Size(599, 37);
             tableLayoutPanel4.TabIndex = 3;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Dock = DockStyle.Fill;
-            label3.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(3, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(304, 37);
-            label3.TabIndex = 1;
-            label3.Text = "Logged in as Admin";
-            label3.TextAlign = ContentAlignment.MiddleRight;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -282,6 +185,19 @@
             label4.Text = "MM/DD/YY-HH/MM/SS";
             label4.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Dock = DockStyle.Fill;
+            label3.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(3, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(304, 37);
+            label3.TabIndex = 1;
+            label3.Text = "Logged in as Admin";
+            label3.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // pictureBox1
             // 
             pictureBox1.Cursor = Cursors.Hand;
@@ -291,6 +207,90 @@
             pictureBox1.Size = new Size(42, 31);
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(3, 84);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(tableLayoutPanel3);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(tabControl1);
+            splitContainer1.Size = new Size(1107, 561);
+            splitContainer1.SplitterDistance = 369;
+            splitContainer1.TabIndex = 1;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 1;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(label1, 0, 0);
+            tableLayoutPanel3.Controls.Add(flowLayoutPanel1, 0, 1);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(0, 0);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 2;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 7.5329566F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 92.46704F));
+            tableLayoutPanel3.Size = new Size(369, 561);
+            tableLayoutPanel3.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Dock = DockStyle.Left;
+            label1.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(3, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(197, 42);
+            label1.TabIndex = 0;
+            label1.Text = "Users x Products list";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(3, 45);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(363, 513);
+            flowLayoutPanel1.TabIndex = 1;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(734, 561);
+            tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            tabPage1.BackColor = Color.FromArgb(7, 48, 43);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(726, 533);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Users";
+            // 
+            // tabPage2
+            // 
+            tabPage2.BackColor = Color.FromArgb(7, 48, 43);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(726, 533);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "tabPage2";
             // 
             // Admin
             // 
@@ -305,17 +305,17 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            tabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
 

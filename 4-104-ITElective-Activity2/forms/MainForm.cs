@@ -1,26 +1,20 @@
 ﻿using _4_104_ITElective_Activity2.Components;
 using _4_104_ITElective_Activity2.core;
+using _4_104_ITElective_Activity2.Core.DI;
 using _4_104_ITElective_Activity2.modules.item;
 using _4_104_ITElective_Activity2.modules.transaction;
 using _4_104_ITElective_Activity2.modules.transactionItem;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Security.AccessControl;
-using System.Text;
 using System.Windows.Forms;
 
 namespace _4_104_ITElective_Activity2.forms
 {
     public partial class MainForm : Form
     {
-        // Depenencies
-        // Later will be hold under core di manager
-        private ProductService _service;
-        private TransactionItemService _transactionItemService;
+        private readonly ProductService         _productService;
+        private readonly TransactionItemService _transactionItemService;
 
         private BindingList<TransactionItem> _transactionItems;
         private CultureInfo phCulture = new CultureInfo("en-PH");
@@ -29,13 +23,21 @@ namespace _4_104_ITElective_Activity2.forms
         {
             InitializeComponent();
 
-            InitializeTransactionGrid();
+            // 1. Resolve services from the DI container.
+            //    Services subscribe to EventBus in their ctors, so they must be
+            //    resolved BEFORE any EventBus.Publish calls below.
+            _productService         = ServiceLocator.Get<ProductService>();
+            _transactionItemService = ServiceLocator.Get<TransactionItemService>();
 
+            // 2. Subscribe to responses
+            InitializeTransactionGrid();
             EventBus.Subscribe<UpdateTransactionItemDTO>(OnItemAdded);
             EventBus.Subscribe<LoadItemsResultDTO>(OnItemsLoaded);
 
+            // 3. Now publish — ProductService is subscribed and ready
             EventBus.Publish(new LoadItemsRequestDTO());
         }
+        #region Additional UI Setup
         public void InitializeTransactionGrid()
         {
             _transactionItems = new BindingList<TransactionItem>();
@@ -135,9 +137,43 @@ namespace _4_104_ITElective_Activity2.forms
 
             e.Handled = true;
         }
+        #endregion
         private void OnItemsLoaded(LoadItemsResultDTO result)
         {
+            // Clear the designer placeholder cards and build real ones from DB
+            flowLayoutPanel2.Controls.Clear();
 
+            foreach (var product in result.Items)
+            {
+                var card = new ProductCard
+                {
+                    Title     = product.name,
+                    Price     = product.price,
+                    BackColor = Color.FromArgb(0, 63, 47),
+                    Size      = new Size(264, 96),
+                    Cursor    = Cursors.Hand,
+                };
+
+                var captured = product; // capture for closure
+                card.Click += (s, e) => OnProductCardClicked(captured);
+
+                flowLayoutPanel2.Controls.Add(card);
+            }
+        }
+
+        private void OnProductCardClicked(Product product)
+        {
+            EventBus.Publish(new AddedTransactionItemDTO
+            {
+                TransactionItem = new TransactionItem
+                {
+                    itemId   = (int)product.id!,
+                    name     = product.name,
+                    cupSize  = CupSize.Regular,
+                    price    = product.price,
+                    quantity = 1,
+                }
+            });
         }
         private void OnItemAdded(UpdateTransactionItemDTO dto)
         {
