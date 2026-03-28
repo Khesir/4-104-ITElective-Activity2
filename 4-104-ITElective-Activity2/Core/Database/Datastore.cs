@@ -11,7 +11,7 @@ namespace _4_104_ITElective_Activity2.Core.Database
     public abstract class Datastore
     {
         private readonly string _connectionString;
-
+        
         protected Datastore()
         {
             _connectionString = ConfigurationManager

@@ -1,3 +1,4 @@
+using _4_104_ITElective_Activity2.core;
 using _4_104_ITElective_Activity2.Core;
 using _4_104_ITElective_Activity2.Core.DI;
 using _4_104_ITElective_Activity2.forms;
@@ -6,6 +7,10 @@ using System.Windows.Forms;
 
 namespace _4_104_ITElective_Activity2.Forms
 {
+    public class LogoutSignal
+    {
+        public required bool signal;
+    }
     public partial class Form1 : Form
     {
         private readonly UserRepository _userRepository = ServiceLocator.Get<UserRepository>();
@@ -13,8 +18,18 @@ namespace _4_104_ITElective_Activity2.Forms
         public Form1()
         {
             InitializeComponent();
+            EventBus.Subscribe<LogoutSignal>(OnLogout);
         }
-
+        private void OnLogout(LogoutSignal data)
+        {
+            if (data.signal == true)
+            {
+                AppStore.Clear<UserSession>();
+                this.Show();
+                usernameTextBox.Clear();
+                passwordTextbox.Clear();
+            }
+        }
         private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e) { }
 
         private void button1_Click(object sender, EventArgs e)
@@ -44,7 +59,6 @@ namespace _4_104_ITElective_Activity2.Forms
                 ? new Admin()
                 : new MainForm();
 
-            destination.FormClosed += (s, args) => this.Close();
             destination.Show();
         }
     }

@@ -23,13 +23,9 @@ namespace _4_104_ITElective_Activity2.forms
         {
             InitializeComponent();
 
-            // 1. Resolve services from the DI container.
-            //    Services subscribe to EventBus in their ctors, so they must be
-            //    resolved BEFORE any EventBus.Publish calls below.
             _productService         = ServiceLocator.Get<ProductService>();
             _transactionItemService = ServiceLocator.Get<TransactionItemService>();
 
-            // 2. Subscribe to responses
             InitializeTransactionGrid();
             EventBus.Subscribe<UpdateTransactionItemDTO>(OnItemAdded);
             EventBus.Subscribe<LoadItemsResultDTO>(OnItemsLoaded);

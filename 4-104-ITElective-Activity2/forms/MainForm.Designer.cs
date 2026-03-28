@@ -45,8 +45,6 @@
             splitContainer1 = new SplitContainer();
             tableLayoutPanel6 = new TableLayoutPanel();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            productCard1 = new _4_104_ITElective_Activity2.Components.ProductCard();
-            productCard2 = new _4_104_ITElective_Activity2.Components.ProductCard();
             label7 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel3 = new Panel();
@@ -72,7 +70,6 @@
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)transactionGridView).BeginInit();
@@ -259,33 +256,11 @@
             // 
             // flowLayoutPanel2
             // 
-            flowLayoutPanel2.Controls.Add(productCard1);
-            flowLayoutPanel2.Controls.Add(productCard2);
             flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.Location = new Point(3, 43);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(544, 566);
             flowLayoutPanel2.TabIndex = 0;
-            // 
-            // productCard1
-            // 
-            productCard1.BackColor = Color.FromArgb(0, 63, 47);
-            productCard1.Location = new Point(3, 3);
-            productCard1.Name = "productCard1";
-            productCard1.Price = 0D;
-            productCard1.Size = new Size(264, 96);
-            productCard1.TabIndex = 0;
-            productCard1.Title = "Creamy Pure Matcha Latte";
-            // 
-            // productCard2
-            // 
-            productCard2.BackColor = Color.FromArgb(0, 63, 47);
-            productCard2.Location = new Point(273, 3);
-            productCard2.Name = "productCard2";
-            productCard2.Price = 0D;
-            productCard2.Size = new Size(264, 96);
-            productCard2.TabIndex = 1;
-            productCard2.Title = "Creamy Pure Matcha Latte";
             // 
             // label7
             // 
@@ -489,7 +464,6 @@
             splitContainer1.ResumeLayout(false);
             tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel6.PerformLayout();
-            flowLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)transactionGridView).EndInit();

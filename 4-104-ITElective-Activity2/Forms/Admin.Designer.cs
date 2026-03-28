@@ -33,26 +33,27 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             label2 = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            AddBtn = new Button();
+            EditBtn = new Button();
+            DeleteBtn = new Button();
             tableLayoutPanel4 = new TableLayoutPanel();
-            label4 = new Label();
+            ClockLabel = new Label();
             label3 = new Label();
-            pictureBox1 = new PictureBox();
+            logoutIcon = new PictureBox();
             splitContainer1 = new SplitContainer();
             tableLayoutPanel3 = new TableLayoutPanel();
-            label1 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            SideBarTitle = new Label();
+            SidebarDataList = new FlowLayoutPanel();
             tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
+            UserPage = new TabPage();
+            productPage = new TabPage();
+            TransactionPage = new TabPage();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logoutIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -89,8 +90,8 @@
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45.3477859F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.6522141F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45.2574539F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.7425461F));
             tableLayoutPanel2.Controls.Add(label2, 0, 0);
             tableLayoutPanel2.Controls.Add(flowLayoutPanel2, 0, 1);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel4, 1, 0);
@@ -102,7 +103,6 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 41.81818F));
             tableLayoutPanel2.Size = new Size(1107, 75);
             tableLayoutPanel2.TabIndex = 0;
-            tableLayoutPanel2.Paint += tableLayoutPanel2_Paint;
             // 
             // label2
             // 
@@ -119,41 +119,41 @@
             // 
             // flowLayoutPanel2
             // 
-            flowLayoutPanel2.Controls.Add(button1);
-            flowLayoutPanel2.Controls.Add(button2);
-            flowLayoutPanel2.Controls.Add(button3);
+            flowLayoutPanel2.Controls.Add(AddBtn);
+            flowLayoutPanel2.Controls.Add(EditBtn);
+            flowLayoutPanel2.Controls.Add(DeleteBtn);
             flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.Location = new Point(3, 46);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(496, 26);
+            flowLayoutPanel2.Size = new Size(495, 26);
             flowLayoutPanel2.TabIndex = 2;
             // 
-            // button1
+            // AddBtn
             // 
-            button1.Location = new Point(3, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            AddBtn.Location = new Point(3, 3);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(75, 23);
+            AddBtn.TabIndex = 0;
+            AddBtn.Text = "Add";
+            AddBtn.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // EditBtn
             // 
-            button2.Location = new Point(84, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
-            button2.Text = "Edit";
-            button2.UseVisualStyleBackColor = true;
+            EditBtn.Location = new Point(84, 3);
+            EditBtn.Name = "EditBtn";
+            EditBtn.Size = new Size(75, 23);
+            EditBtn.TabIndex = 1;
+            EditBtn.Text = "Edit";
+            EditBtn.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // DeleteBtn
             // 
-            button3.Location = new Point(165, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 2;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            DeleteBtn.Location = new Point(165, 3);
+            DeleteBtn.Name = "DeleteBtn";
+            DeleteBtn.Size = new Size(75, 23);
+            DeleteBtn.TabIndex = 2;
+            DeleteBtn.Text = "Delete";
+            DeleteBtn.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel4
             // 
@@ -161,29 +161,29 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 56.1959648F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 43.8040352F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 47F));
-            tableLayoutPanel4.Controls.Add(label4, 1, 0);
+            tableLayoutPanel4.Controls.Add(ClockLabel, 1, 0);
             tableLayoutPanel4.Controls.Add(label3, 0, 0);
-            tableLayoutPanel4.Controls.Add(pictureBox1, 2, 0);
+            tableLayoutPanel4.Controls.Add(logoutIcon, 2, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(505, 3);
+            tableLayoutPanel4.Location = new Point(504, 3);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Size = new Size(599, 37);
+            tableLayoutPanel4.Size = new Size(600, 37);
             tableLayoutPanel4.TabIndex = 3;
             // 
-            // label4
+            // ClockLabel
             // 
-            label4.AutoSize = true;
-            label4.Dock = DockStyle.Fill;
-            label4.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(313, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(235, 37);
-            label4.TabIndex = 2;
-            label4.Text = "MM/DD/YY-HH/MM/SS";
-            label4.TextAlign = ContentAlignment.MiddleRight;
+            ClockLabel.AutoSize = true;
+            ClockLabel.Dock = DockStyle.Fill;
+            ClockLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ClockLabel.ForeColor = Color.White;
+            ClockLabel.Location = new Point(313, 0);
+            ClockLabel.Name = "ClockLabel";
+            ClockLabel.Size = new Size(236, 37);
+            ClockLabel.TabIndex = 2;
+            ClockLabel.Text = "MM/DD/YY-HH/MM/SS";
+            ClockLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label3
             // 
@@ -198,15 +198,16 @@
             label3.Text = "Logged in as Admin";
             label3.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // pictureBox1
+            // logoutIcon
             // 
-            pictureBox1.Cursor = Cursors.Hand;
-            pictureBox1.Image = Properties.Resources.logout_8_32;
-            pictureBox1.Location = new Point(554, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(42, 31);
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
+            logoutIcon.Cursor = Cursors.Hand;
+            logoutIcon.Image = Properties.Resources.logout_8_32;
+            logoutIcon.Location = new Point(555, 3);
+            logoutIcon.Name = "logoutIcon";
+            logoutIcon.Size = new Size(42, 31);
+            logoutIcon.TabIndex = 3;
+            logoutIcon.TabStop = false;
+            logoutIcon.Click += logoutIcon_Click;
             // 
             // splitContainer1
             // 
@@ -229,8 +230,8 @@
             // 
             tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(label1, 0, 0);
-            tableLayoutPanel3.Controls.Add(flowLayoutPanel1, 0, 1);
+            tableLayoutPanel3.Controls.Add(SideBarTitle, 0, 0);
+            tableLayoutPanel3.Controls.Add(SidebarDataList, 0, 1);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(0, 0);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -240,57 +241,69 @@
             tableLayoutPanel3.Size = new Size(369, 561);
             tableLayoutPanel3.TabIndex = 0;
             // 
-            // label1
+            // SideBarTitle
             // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Left;
-            label1.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(197, 42);
-            label1.TabIndex = 0;
-            label1.Text = "Users x Products list";
-            label1.TextAlign = ContentAlignment.MiddleLeft;
+            SideBarTitle.AutoSize = true;
+            SideBarTitle.Dock = DockStyle.Left;
+            SideBarTitle.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            SideBarTitle.ForeColor = Color.White;
+            SideBarTitle.Location = new Point(3, 0);
+            SideBarTitle.Name = "SideBarTitle";
+            SideBarTitle.Size = new Size(197, 42);
+            SideBarTitle.TabIndex = 0;
+            SideBarTitle.Text = "Users x Products list";
+            SideBarTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // flowLayoutPanel1
+            // SidebarDataList
             // 
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(3, 45);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(363, 513);
-            flowLayoutPanel1.TabIndex = 1;
+            SidebarDataList.Dock = DockStyle.Fill;
+            SidebarDataList.Location = new Point(3, 45);
+            SidebarDataList.Name = "SidebarDataList";
+            SidebarDataList.Size = new Size(363, 513);
+            SidebarDataList.TabIndex = 1;
             // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(UserPage);
+            tabControl1.Controls.Add(productPage);
+            tabControl1.Controls.Add(TransactionPage);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(734, 561);
             tabControl1.TabIndex = 0;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
-            // tabPage1
+            // UserPage
             // 
-            tabPage1.BackColor = Color.FromArgb(7, 48, 43);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(726, 533);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Users";
+            UserPage.BackColor = Color.FromArgb(7, 48, 43);
+            UserPage.Location = new Point(4, 24);
+            UserPage.Name = "UserPage";
+            UserPage.Padding = new Padding(3);
+            UserPage.Size = new Size(726, 533);
+            UserPage.TabIndex = 0;
+            UserPage.Text = "Users";
             // 
-            // tabPage2
+            // productPage
             // 
-            tabPage2.BackColor = Color.FromArgb(7, 48, 43);
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(726, 533);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
+            productPage.BackColor = Color.FromArgb(7, 48, 43);
+            productPage.Location = new Point(4, 24);
+            productPage.Name = "productPage";
+            productPage.Padding = new Padding(3);
+            productPage.Size = new Size(726, 533);
+            productPage.TabIndex = 1;
+            productPage.Text = "Products";
+            // 
+            // TransactionPage
+            // 
+            TransactionPage.BackColor = Color.FromArgb(7, 48, 43);
+            TransactionPage.Location = new Point(4, 24);
+            TransactionPage.Name = "TransactionPage";
+            TransactionPage.Padding = new Padding(3);
+            TransactionPage.Size = new Size(726, 533);
+            TransactionPage.TabIndex = 2;
+            TransactionPage.Text = "Transaction";
             // 
             // Admin
             // 
@@ -308,7 +321,7 @@
             flowLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logoutIcon).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -326,19 +339,20 @@
         private TableLayoutPanel tableLayoutPanel2;
         private SplitContainer splitContainer1;
         private TableLayoutPanel tableLayoutPanel3;
-        private Label label1;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private Label SideBarTitle;
+        private FlowLayoutPanel SidebarDataList;
         private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
+        private TabPage UserPage;
+        private TabPage productPage;
         private Label label2;
         private FlowLayoutPanel flowLayoutPanel2;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button AddBtn;
+        private Button EditBtn;
+        private Button DeleteBtn;
         private TableLayoutPanel tableLayoutPanel4;
-        private Label label4;
+        private Label ClockLabel;
         private Label label3;
-        private PictureBox pictureBox1;
+        private PictureBox logoutIcon;
+        private TabPage TransactionPage;
     }
 }

@@ -13,7 +13,7 @@ namespace _4_104_ITElective_Activity2.Modules.User
         public User? SelectByCredentials(string username, string password)
         {
             const string sql = @"
-                SELECT id, username, role
+                SELECT id, username, role, image_path
                 FROM users
                 WHERE username      = @username
                   AND password_hash = SHA2(@password, 256)
@@ -29,10 +29,24 @@ namespace _4_104_ITElective_Activity2.Modules.User
 
             return new User
             {
-                Id       = reader.GetInt32("id"),
-                Username = reader.GetString("username"),
-                Role     = reader.GetString("role"),
+                Id        = reader.GetInt32("id"),
+                Username  = reader.GetString("username"),
+                Role      = reader.GetString("role"),
+                ImagePath = reader.IsDBNull(reader.GetOrdinal("image_path"))
+                                ? null
+                                : reader.GetString("image_path"),
             };
+        }
+
+        public void UpdateImagePath(int id, string objectName)
+        {
+            const string sql = "UPDATE users SET image_path = @imagePath WHERE id = @id";
+
+            using var conn = GetConnection();
+            using var cmd  = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id",        id);
+            cmd.Parameters.AddWithValue("@imagePath", objectName);
+            cmd.ExecuteNonQuery();
         }
     }
 }

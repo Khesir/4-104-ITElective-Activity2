@@ -1,0 +1,2 @@
+ALTER TABLE users
+    ADD COLUMN image_path VARCHAR(500) NULL;
