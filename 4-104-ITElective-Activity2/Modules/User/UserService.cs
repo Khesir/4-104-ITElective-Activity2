@@ -27,27 +27,53 @@ namespace _4_104_ITElective_Activity2.Modules.User
         public Task<bool> UsernameExistsAsync(string username, int? excludeId = null)
             => _repository.UsernameExistsAsync(username, excludeId);
 
-        public async Task CreateUserAsync(User user, string password,
-            Stream? imageStream, string? imageFileName, string? imageContentType)
+        public async Task CreateUserAsync(CreateUserDTO dto)
         {
-            if (imageStream != null && imageFileName != null && imageContentType != null)
-                user.ImagePath = await _minioStore.UploadAsync(imageStream, imageFileName, imageContentType);
+            var user = new User
+            {
+                Username         = dto.Username,
+                Role             = dto.Role,
+                FirstName        = dto.FirstName,
+                MiddleName       = dto.MiddleName,
+                LastName         = dto.LastName,
+                Contact          = dto.Contact,
+                PermanentAddress = dto.PermanentAddress,
+                CurrentAddress   = dto.CurrentAddress,
+                Gender           = dto.Gender,
+            };
 
-            await _repository.CreateAsync(user, password);
+            if (dto.ImageStream != null && dto.ImageFileName != null && dto.ImageContentType != null)
+                user.ImagePath = await _minioStore.UploadAsync(dto.ImageStream, dto.ImageFileName, dto.ImageContentType);
+
+            await _repository.CreateAsync(user, dto.Password);
         }
 
-        public async Task UpdateUserAsync(User user, string? newPassword,
-            Stream? imageStream, string? imageFileName, string? imageContentType)
+        public async Task UpdateUserAsync(UpdateUserDTO dto)
         {
-            if (imageStream != null && imageFileName != null && imageContentType != null)
+            var user = new User
+            {
+                Id               = dto.Id,
+                Username         = dto.Username,
+                Role             = dto.Role,
+                FirstName        = dto.FirstName,
+                MiddleName       = dto.MiddleName,
+                LastName         = dto.LastName,
+                Contact          = dto.Contact,
+                PermanentAddress = dto.PermanentAddress,
+                CurrentAddress   = dto.CurrentAddress,
+                Gender           = dto.Gender,
+                ImagePath        = dto.ExistingImagePath,
+            };
+
+            if (dto.ImageStream != null && dto.ImageFileName != null && dto.ImageContentType != null)
             {
                 if (!string.IsNullOrEmpty(user.ImagePath))
                     await _minioStore.DeleteAsync(user.ImagePath);
 
-                user.ImagePath = await _minioStore.UploadAsync(imageStream, imageFileName, imageContentType);
+                user.ImagePath = await _minioStore.UploadAsync(dto.ImageStream, dto.ImageFileName, dto.ImageContentType);
             }
 
-            await _repository.UpdateFullAsync(user, newPassword);
+            await _repository.UpdateFullAsync(user, dto.NewPassword);
         }
 
         public Task DeleteUserAsync(int id) => _repository.DeleteAsync(id);

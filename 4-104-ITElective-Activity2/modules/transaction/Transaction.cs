@@ -18,7 +18,7 @@ namespace _4_104_ITElective_Activity2.modules.transaction
         public double totalAmount
         {
             get => _totalAmount;
-            private set
+            set
             {
                 if (_totalAmount != value)
                 {

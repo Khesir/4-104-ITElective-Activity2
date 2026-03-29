@@ -21,19 +21,47 @@ namespace _4_104_ITElective_Activity2.modules.transactionItem
 
         private void HandleAddTransactionItem(AddedTransactionItemDTO dto)
         {
-            if (dto.TransactionItem == null) return;
-            // Check if there is already a transaction item with the same itemId and cupSize,
-            var item = _repository.GetByItemIdAndCupSize(dto.TransactionItem.itemId, dto.TransactionItem.cupSize);
-            if (item != null)
+            var existing = _repository.GetByItemIdAndCupSize(dto.ItemId, dto.CupSize);
+            if (existing != null)
             {
-                item.quantity += dto.TransactionItem.quantity;
-                item.UpdateTotalPrice();
-                _repository.Update(item);
+                existing.quantity += dto.Quantity;
+                existing.UpdateTotalPrice();
+                _repository.Update(existing);
                 return;
             }
-            // if so, just update the quantity and total price
-            _repository.Add(dto.TransactionItem);
+
+            _repository.Add(new TransactionItem
+            {
+                itemId   = dto.ItemId,
+                name     = dto.Name,
+                cupSize  = dto.CupSize,
+                price    = dto.Price,
+                quantity = dto.Quantity,
+            });
+        } 
+        public void IncreaseQuantity(int id)
+        {
+            var item = _repository.GetById(id);
+            if (item == null) return;
+            item.quantity++;
+            item.UpdateTotalPrice();
+            _repository.Update(item);
         }
+
+        public void DecreaseQuantity(int id)
+        {
+            var item = _repository.GetById(id);
+            if (item == null) return;
+            if (item.quantity <= 1) { _repository.Delete(id); return; }
+            item.quantity--;
+            item.UpdateTotalPrice();
+            _repository.Update(item);
+        }
+
+        public void RemoveItem(int id) => _repository.Delete(id);
+
+        public void ClearCart() => _repository.Clear();
+
         private void HandleCreateNewTransaction(CreatedNewTransactionDTO dto)
         {
             _repository.Clear();

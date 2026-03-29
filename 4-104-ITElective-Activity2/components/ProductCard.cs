@@ -27,6 +27,20 @@ namespace _4_104_ITElective_Activity2.Components
             get => productName.Text;
             set => productName.Text = value;
         }
+        private string _imagePath;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public string Image
+        {
+            get => _imagePath;
+            set
+            {
+                _imagePath = value;
+                if (!string.IsNullOrEmpty(value))
+                    pictureBox1.Load(value);
+                else
+                    pictureBox1.Image = null;
+            }
+        }
 
         public ProductCard()
         {

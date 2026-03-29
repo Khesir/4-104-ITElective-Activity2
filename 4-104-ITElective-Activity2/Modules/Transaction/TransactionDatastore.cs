@@ -133,9 +133,10 @@ namespace _4_104_ITElective_Activity2.modules.transaction
 
         private static Transaction Map(MySqlDataReader r) => new Transaction
         {
-            id        = r.GetInt32("id"),
-            userId    = r.IsDBNull(r.GetOrdinal("user_id")) ? null : r.GetInt32("user_id"),
-            createdAt = r.GetDateTime("created_at"),
+            id          = r.GetInt32("id"),
+            userId      = r.IsDBNull(r.GetOrdinal("user_id")) ? null : r.GetInt32("user_id"),
+            totalAmount = r.GetDouble("total_amount"),
+            createdAt   = r.GetDateTime("created_at"),
         };
     }
 }

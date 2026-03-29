@@ -1,5 +1,6 @@
 ﻿using _4_104_ITElective_Activity2.Components;
 using _4_104_ITElective_Activity2.core;
+using _4_104_ITElective_Activity2.Core;
 using _4_104_ITElective_Activity2.Core.DI;
 using _4_104_ITElective_Activity2.Core.Storage;
 using _4_104_ITElective_Activity2.Core.Util;
@@ -28,6 +29,7 @@ namespace _4_104_ITElective_Activity2.Forms
         public Admin()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 
             _productService                 = ServiceLocator.Get<ProductService>();
             _transactionService             = ServiceLocator.Get<TransactionService>();
@@ -42,6 +44,7 @@ namespace _4_104_ITElective_Activity2.Forms
             // Trigger initial sidebar load
             tabControl1_SelectedIndexChanged(this, EventArgs.Empty);
 
+            label3.Text = $"Welcome, {AppStore.Get<UserSession>()?.Username}!";
         }
 
         private void OnClockTick(ClockTickDTO dto)
@@ -140,7 +143,7 @@ namespace _4_104_ITElective_Activity2.Forms
                 {
                     foreach (var transaction in transactions)
                     {
-                        var userControl = new AdminSideBarItem { Title = transaction.createdAt.ToString("MM/dd/yyyy hh:mm:ss tt"), Description = $"Total Amount: {transaction.totalAmount}" };
+                        var userControl = new AdminSideBarItem { Title = transaction.createdAt.ToString("MM/dd/yyyy hh:mm:ss tt"), Description = $"Total Amount: ₱{transaction.totalAmount}" };
                         userControl.RegisterClickHandler((s, args) => updateSelectedTabTransaction(transaction));
                         SidebarDataList.Controls.Add(userControl);
                     }
@@ -216,14 +219,18 @@ namespace _4_104_ITElective_Activity2.Forms
         }
         private async void updateSelectedTabTransaction(Transaction transaction)
         {
-            transactionIdLabel.Text    = transaction.id.ToString();
+            transactionIdLabel.Text    = $"ID: {transaction.id}";
             transactionTitleLabel.Text = "Loading...";
             transactionItemDataGrid.DataSource   = null;
 
             var items = await _transactionService.GetItemsByTransactionIdAsync((int)transaction.id!);
 
             transactionTitleLabel.Text = $"Transaction Items ({items.Count})";
-            transactionItemDataGrid.DataSource   = items;
+            transactionItemDataGrid.DataSource         = items;
+            transactionItemDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            if (transactionItemDataGrid.Columns["id"]     != null) transactionItemDataGrid.Columns["id"].Visible     = false;
+            if (transactionItemDataGrid.Columns["itemId"] != null) transactionItemDataGrid.Columns["itemId"].Visible = false;
         }
         protected override void OnFormClosed(FormClosedEventArgs e)
         {

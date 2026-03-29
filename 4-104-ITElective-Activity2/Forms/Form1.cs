@@ -19,6 +19,7 @@ namespace _4_104_ITElective_Activity2.Forms
         public Form1()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
                 _userRepository = ServiceLocator.Get<UserRepository>();

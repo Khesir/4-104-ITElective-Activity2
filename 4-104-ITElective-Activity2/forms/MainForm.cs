@@ -1,20 +1,25 @@
 ﻿using _4_104_ITElective_Activity2.Components;
 using _4_104_ITElective_Activity2.core;
+using _4_104_ITElective_Activity2.Core;
 using _4_104_ITElective_Activity2.Core.DI;
+using _4_104_ITElective_Activity2.Forms;
 using _4_104_ITElective_Activity2.modules.item;
 using _4_104_ITElective_Activity2.modules.transaction;
 using _4_104_ITElective_Activity2.modules.transactionItem;
+using _4_104_ITElective_Activity2.Modules.User;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _4_104_ITElective_Activity2.forms
 {
     public partial class MainForm : Form
     {
-        private readonly ProductService         _productService;
+        private readonly ProductService _productService;
         private readonly TransactionItemService _transactionItemService;
+        private readonly TransactionService _transactionService;
 
         private BindingList<TransactionItem> _transactionItems;
         private CultureInfo phCulture = new CultureInfo("en-PH");
@@ -22,14 +27,19 @@ namespace _4_104_ITElective_Activity2.forms
         public MainForm()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 
-            _productService         = ServiceLocator.Get<ProductService>();
+            _productService = ServiceLocator.Get<ProductService>();
             _transactionItemService = ServiceLocator.Get<TransactionItemService>();
+            _transactionService = ServiceLocator.Get<TransactionService>();
+
+            confirmPaymentBtn.UseVisualStyleBackColor = false;
 
             InitializeTransactionGrid();
             EventBus.Subscribe<UpdateTransactionItemDTO>(OnItemAdded);
 
             LoadProducts();
+            loggedInUserLabel.Text = $"Welcome, {AppStore.Get<UserSession>()?.Username}!";
         }
 
         private async void LoadProducts()
@@ -118,6 +128,57 @@ namespace _4_104_ITElective_Activity2.forms
                 ReadOnly = true
             });
 
+            var btnStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(0, 63, 47),
+                ForeColor = Color.White,
+                Font = new Font("Courier New", 11f, FontStyle.Bold),
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                SelectionBackColor = Color.FromArgb(0, 63, 47),
+                SelectionForeColor = Color.White,
+            };
+
+            transactionGridView.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "colDecrease",
+                HeaderText = "",
+                Text = "−",
+                UseColumnTextForButtonValue = true,
+                Width = 38,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                DefaultCellStyle = (DataGridViewCellStyle)btnStyle.Clone(),
+                FlatStyle = FlatStyle.Flat,
+            });
+
+            transactionGridView.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "colIncrease",
+                HeaderText = "",
+                Text = "+",
+                UseColumnTextForButtonValue = true,
+                Width = 38,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                DefaultCellStyle = (DataGridViewCellStyle)btnStyle.Clone(),
+                FlatStyle = FlatStyle.Flat,
+            });
+
+            var deleteStyle = (DataGridViewCellStyle)btnStyle.Clone();
+            deleteStyle.ForeColor = Color.FromArgb(255, 80, 80);
+            deleteStyle.SelectionForeColor = Color.FromArgb(255, 80, 80);
+
+            transactionGridView.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "colDelete",
+                HeaderText = "",
+                Text = "✕",
+                UseColumnTextForButtonValue = true,
+                Width = 38,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                DefaultCellStyle = deleteStyle,
+                FlatStyle = FlatStyle.Flat,
+            });
+
+            transactionGridView.CellClick += TransactionGrid_CellClick;
             transactionGridView.DataSource = _transactionItems;
         }
         private void TransactionGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -138,23 +199,28 @@ namespace _4_104_ITElective_Activity2.forms
             e.Handled = true;
         }
         #endregion
-        private void LoadProductCards(List<Product> products)
+        private async Task LoadProductCards(List<Product> products)
         {
             flowLayoutPanel2.Controls.Clear();
 
             foreach (var product in products)
             {
+                string? imageUrl = await _productService.GetProductImageUrlAsync(product.imagePath);
                 var card = new ProductCard
                 {
                     Title     = product.name,
                     Price     = product.price,
-                    BackColor = Color.FromArgb(0, 63, 47),
+                    BackColor = product.isAvailable ? Color.FromArgb(0, 63, 47) : Color.FromArgb(60, 60, 60),
                     Size      = new Size(264, 96),
-                    Cursor    = Cursors.Hand,
+                    Image     = imageUrl,
+                    Cursor    = product.isAvailable ? Cursors.Hand : Cursors.No,
                 };
 
-                var captured = product;
-                card.RegisterClickHandler((s, e) => OnProductCardClicked(captured));
+                if (product.isAvailable)
+                {
+                    var captured = product;
+                    card.RegisterClickHandler((s, e) => OnProductCardClicked(captured));
+                }
 
                 flowLayoutPanel2.Controls.Add(card);
             }
@@ -162,16 +228,23 @@ namespace _4_104_ITElective_Activity2.forms
 
         private void OnProductCardClicked(Product product)
         {
+            using var form = new CupSelectionForm();
+            if (form.ShowDialog() != DialogResult.OK) return;
+
+            double price = product.price + form.SelectedCupSize switch
+            {
+                CupSize.Venti => 30,
+                CupSize.Grande => 20,
+                _ => 0,
+            };
+
             EventBus.Publish(new AddedTransactionItemDTO
             {
-                TransactionItem = new TransactionItem
-                {
-                    itemId   = (int)product.id!,
-                    name     = product.name,
-                    cupSize  = CupSize.Regular,
-                    price    = product.price,
-                    quantity = 1,
-                }
+                ItemId   = (int)product.id!,
+                Name     = product.name,
+                CupSize  = form.SelectedCupSize,
+                Price    = price,
+                Quantity = 1,
             });
         }
         private void OnItemAdded(UpdateTransactionItemDTO dto)
@@ -183,6 +256,21 @@ namespace _4_104_ITElective_Activity2.forms
                 _transactionItems.Add(item);
             }
             UpdateTotalPrice();
+        }
+
+        private void TransactionGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= _transactionItems.Count) return;
+
+            var item = _transactionItems[e.RowIndex];
+            if (item.id == null) return;
+
+            switch (transactionGridView.Columns[e.ColumnIndex].Name)
+            {
+                case "colDecrease": _transactionItemService.DecreaseQuantity((int)item.id); break;
+                case "colIncrease": _transactionItemService.IncreaseQuantity((int)item.id); break;
+                case "colDelete": _transactionItemService.RemoveItem((int)item.id); break;
+            }
         }
 
         private void UpdateTransactionGrid()
@@ -223,11 +311,20 @@ namespace _4_104_ITElective_Activity2.forms
                 decimal change = payment - total;
                 changeLabel.Text = change.ToString("C", phCulture);
                 changeLabel.ForeColor = (change < 0) ? System.Drawing.Color.Yellow : System.Drawing.Color.Yellow;
+
+                bool canConfirm = !string.IsNullOrWhiteSpace(paymentTextBox.Text) && change >= 0;
+                confirmPaymentBtn.Enabled = canConfirm;
+                confirmPaymentBtn.BackColor = canConfirm ? ColorTranslator.FromHtml("#FFD54F") : Color.FromArgb(80, 80, 80);
+                confirmPaymentBtn.ForeColor = canConfirm ? ColorTranslator.FromHtml("#07302B") : Color.FromArgb(160, 160, 160);
             }
             else
             {
                 changeLabel.Text = (0m).ToString("C", phCulture);
                 changeLabel.ForeColor = System.Drawing.Color.Yellow;
+
+                confirmPaymentBtn.Enabled = false;
+                confirmPaymentBtn.BackColor = Color.FromArgb(80, 80, 80);
+                confirmPaymentBtn.ForeColor = Color.FromArgb(160, 160, 160);
             }
         }
 
@@ -250,6 +347,35 @@ namespace _4_104_ITElective_Activity2.forms
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void logoutIcon_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                EventBus.Publish(new LogoutSignal { signal = true });
+                this.Close();
+            }
+        }
+
+
+        private async void confirmPaymentBtn_Click_1(object sender, EventArgs e)
+        {
+            if (_transactionItems.Count == 0) return;
+
+            var session = AppStore.Get<UserSession>();
+
+            await _transactionService.SaveTransactionAsync(new SaveTransactionDTO
+            {
+                UserId = session?.Id,
+                Items  = _transactionItems.ToList(),
+            });
+
+            paymentTextBox.Text = "";
+            _transactionItemService.ClearCart();
+
+            MessageBox.Show("Payment confirmed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

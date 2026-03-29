@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             label1 = new Label();
@@ -38,8 +38,8 @@
             tableLayoutPanel5 = new TableLayoutPanel();
             pictureBox1 = new PictureBox();
             label3 = new Label();
-            label6 = new Label();
-            pictureBox2 = new PictureBox();
+            loggedInUserLabel = new Label();
+            logoutIcon = new PictureBox();
             bindingSource1 = new BindingSource(components);
             panel2 = new Panel();
             splitContainer1 = new SplitContainer();
@@ -57,13 +57,14 @@
             label5 = new Label();
             changeLabel = new Label();
             paymentTextBox = new TextBox();
+            confirmPaymentBtn = new Button();
             mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             panel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logoutIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -149,8 +150,8 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 46F));
             tableLayoutPanel5.Controls.Add(pictureBox1, 2, 0);
             tableLayoutPanel5.Controls.Add(label3, 1, 0);
-            tableLayoutPanel5.Controls.Add(label6, 0, 0);
-            tableLayoutPanel5.Controls.Add(pictureBox2, 3, 0);
+            tableLayoutPanel5.Controls.Add(loggedInUserLabel, 0, 0);
+            tableLayoutPanel5.Controls.Add(logoutIcon, 3, 0);
             tableLayoutPanel5.Dock = DockStyle.Fill;
             tableLayoutPanel5.Location = new Point(617, 3);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -185,30 +186,31 @@
             label3.Text = "MM/DD/YY-HH/MM/SS";
             label3.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label6
+            // loggedInUserLabel
             // 
-            label6.AutoSize = true;
-            label6.Dock = DockStyle.Fill;
-            label6.Font = new Font("Courier New", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(3, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(262, 40);
-            label6.TabIndex = 2;
-            label6.Text = "Cashier: User 123456";
-            label6.TextAlign = ContentAlignment.MiddleRight;
+            loggedInUserLabel.AutoSize = true;
+            loggedInUserLabel.Dock = DockStyle.Fill;
+            loggedInUserLabel.Font = new Font("Courier New", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            loggedInUserLabel.ForeColor = Color.White;
+            loggedInUserLabel.Location = new Point(3, 0);
+            loggedInUserLabel.Name = "loggedInUserLabel";
+            loggedInUserLabel.Size = new Size(262, 40);
+            loggedInUserLabel.TabIndex = 2;
+            loggedInUserLabel.Text = "Cashier: User 123456";
+            loggedInUserLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // pictureBox2
+            // logoutIcon
             // 
-            pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Dock = DockStyle.Fill;
-            pictureBox2.Image = Properties.Resources.logout_8_64;
-            pictureBox2.Location = new Point(519, 3);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(40, 34);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 3;
-            pictureBox2.TabStop = false;
+            logoutIcon.Cursor = Cursors.Hand;
+            logoutIcon.Dock = DockStyle.Fill;
+            logoutIcon.Image = Properties.Resources.logout_8_64;
+            logoutIcon.Location = new Point(519, 3);
+            logoutIcon.Name = "logoutIcon";
+            logoutIcon.Size = new Size(40, 34);
+            logoutIcon.SizeMode = PictureBoxSizeMode.StretchImage;
+            logoutIcon.TabIndex = 3;
+            logoutIcon.TabStop = false;
+            logoutIcon.Click += logoutIcon_Click;
             // 
             // panel2
             // 
@@ -286,7 +288,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 179F));
             tableLayoutPanel1.Size = new Size(628, 612);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -296,27 +298,27 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(622, 506);
+            panel3.Size = new Size(622, 427);
             panel3.TabIndex = 0;
             // 
             // transactionGridView
             // 
             transactionGridView.BackgroundColor = Color.FromArgb(7, 48, 43);
             transactionGridView.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(7, 48, 43);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            transactionGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(7, 48, 43);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            transactionGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             transactionGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             transactionGridView.Dock = DockStyle.Fill;
             transactionGridView.GridColor = Color.FromArgb(11, 58, 52);
             transactionGridView.Location = new Point(0, 0);
             transactionGridView.Name = "transactionGridView";
-            transactionGridView.Size = new Size(622, 506);
+            transactionGridView.Size = new Size(622, 427);
             transactionGridView.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -326,11 +328,11 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.60305F));
             tableLayoutPanel3.Controls.Add(tableLayoutPanel4, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 515);
+            tableLayoutPanel3.Location = new Point(3, 436);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(622, 94);
+            tableLayoutPanel3.Size = new Size(622, 173);
             tableLayoutPanel3.TabIndex = 1;
             // 
             // tableLayoutPanel4
@@ -344,14 +346,16 @@
             tableLayoutPanel4.Controls.Add(label5, 0, 2);
             tableLayoutPanel4.Controls.Add(changeLabel, 1, 2);
             tableLayoutPanel4.Controls.Add(paymentTextBox, 1, 1);
+            tableLayoutPanel4.Controls.Add(confirmPaymentBtn, 1, 3);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(210, 3);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 3;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(409, 88);
+            tableLayoutPanel4.RowCount = 4;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 55.2631569F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 44.7368431F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 41F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 49F));
+            tableLayoutPanel4.Size = new Size(409, 167);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // label2
@@ -362,7 +366,7 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(198, 34);
+            label2.Size = new Size(198, 42);
             label2.TabIndex = 0;
             label2.Text = "Total Amount";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -375,7 +379,7 @@
             priceLabel.ForeColor = Color.White;
             priceLabel.Location = new Point(207, 0);
             priceLabel.Name = "priceLabel";
-            priceLabel.Size = new Size(199, 34);
+            priceLabel.Size = new Size(199, 42);
             priceLabel.TabIndex = 1;
             priceLabel.Text = "0";
             priceLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -386,7 +390,7 @@
             label4.Dock = DockStyle.Fill;
             label4.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(3, 34);
+            label4.Location = new Point(3, 42);
             label4.Name = "label4";
             label4.Size = new Size(198, 34);
             label4.TabIndex = 2;
@@ -399,9 +403,9 @@
             label5.Dock = DockStyle.Fill;
             label5.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(3, 68);
+            label5.Location = new Point(3, 76);
             label5.Name = "label5";
-            label5.Size = new Size(198, 20);
+            label5.Size = new Size(198, 41);
             label5.TabIndex = 3;
             label5.Text = "Change";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -412,24 +416,35 @@
             changeLabel.Dock = DockStyle.Fill;
             changeLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             changeLabel.ForeColor = Color.Gold;
-            changeLabel.Location = new Point(207, 68);
+            changeLabel.Location = new Point(207, 76);
             changeLabel.Name = "changeLabel";
-            changeLabel.Size = new Size(199, 20);
+            changeLabel.Size = new Size(199, 41);
             changeLabel.TabIndex = 4;
             changeLabel.Text = "0";
             changeLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // paymentTextBox
             // 
-            paymentTextBox.Dock = DockStyle.Fill;
+            paymentTextBox.Dock = DockStyle.Bottom;
             paymentTextBox.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            paymentTextBox.Location = new Point(207, 37);
+            paymentTextBox.Location = new Point(207, 49);
             paymentTextBox.Name = "paymentTextBox";
             paymentTextBox.PlaceholderText = "Amend amount";
             paymentTextBox.Size = new Size(199, 24);
             paymentTextBox.TabIndex = 5;
             paymentTextBox.TextChanged += paymentTextBox_TextChanged;
             paymentTextBox.KeyPress += paymentTextBox_KeyPress;
+            // 
+            // confirmPaymentBtn
+            // 
+            confirmPaymentBtn.Font = new Font("Courier New", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            confirmPaymentBtn.Location = new Point(207, 120);
+            confirmPaymentBtn.Name = "confirmPaymentBtn";
+            confirmPaymentBtn.Size = new Size(199, 26);
+            confirmPaymentBtn.TabIndex = 6;
+            confirmPaymentBtn.Text = "Confirm Payment";
+            confirmPaymentBtn.UseVisualStyleBackColor = true;
+            confirmPaymentBtn.Click += confirmPaymentBtn_Click_1;
             // 
             // mySqlCommand1
             // 
@@ -456,7 +471,7 @@
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logoutIcon).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
@@ -497,13 +512,14 @@
         private TableLayoutPanel tableLayoutPanel5;
         private PictureBox pictureBox1;
         private Label label3;
-        private Label label6;
-        private PictureBox pictureBox2;
+        private Label loggedInUserLabel;
+        private PictureBox logoutIcon;
         private TableLayoutPanel tableLayoutPanel6;
         private FlowLayoutPanel flowLayoutPanel2;
         private Components.ProductCard productCard1;
         private Components.ProductCard productCard2;
         private Label label7;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
+        private Button confirmPaymentBtn;
     }
 }

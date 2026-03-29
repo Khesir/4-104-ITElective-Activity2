@@ -27,5 +27,19 @@ namespace _4_104_ITElective_Activity2.modules.transaction
 
         public Task<List<TransactionItem>> GetItemsByTransactionIdAsync(int transactionId)
             => _repository.GetItemsByTransactionIdAsync(transactionId);
+
+        public Task<int> SaveTransactionAsync(SaveTransactionDTO dto)
+        {
+            var transaction = new Transaction
+            {
+                userId    = dto.UserId,
+                createdAt = DateTime.Now,
+            };
+
+            foreach (var item in dto.Items)
+                transaction.AddItem(item);
+
+            return _repository.SaveAsync(transaction);
+        }
     }
 }

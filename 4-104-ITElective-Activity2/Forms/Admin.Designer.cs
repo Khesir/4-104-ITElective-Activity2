@@ -957,14 +957,14 @@
             // 
             transactionLayoutPanel.ColumnCount = 3;
             transactionLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
-            transactionLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 600F));
+            transactionLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 701F));
             transactionLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             transactionLayoutPanel.Controls.Add(tableLayoutPanel16, 1, 1);
             transactionLayoutPanel.Dock = DockStyle.Fill;
             transactionLayoutPanel.Location = new Point(3, 3);
             transactionLayoutPanel.Name = "transactionLayoutPanel";
             transactionLayoutPanel.RowCount = 3;
-            transactionLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            transactionLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
             transactionLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             transactionLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             transactionLayoutPanel.Size = new Size(720, 527);
@@ -977,21 +977,21 @@
             tableLayoutPanel16.Controls.Add(transactionItemDataGrid, 0, 1);
             tableLayoutPanel16.Controls.Add(tableLayoutPanel17, 0, 0);
             tableLayoutPanel16.Dock = DockStyle.Fill;
-            tableLayoutPanel16.Location = new Point(82, 23);
+            tableLayoutPanel16.Location = new Point(15, 11);
             tableLayoutPanel16.Name = "tableLayoutPanel16";
             tableLayoutPanel16.RowCount = 2;
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 6.39175272F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 93.6082458F));
-            tableLayoutPanel16.Size = new Size(594, 481);
+            tableLayoutPanel16.Size = new Size(695, 493);
             tableLayoutPanel16.TabIndex = 0;
             // 
             // transactionItemDataGrid
             // 
             transactionItemDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             transactionItemDataGrid.Dock = DockStyle.Fill;
-            transactionItemDataGrid.Location = new Point(3, 33);
+            transactionItemDataGrid.Location = new Point(3, 34);
             transactionItemDataGrid.Name = "transactionItemDataGrid";
-            transactionItemDataGrid.Size = new Size(588, 445);
+            transactionItemDataGrid.Size = new Size(689, 456);
             transactionItemDataGrid.TabIndex = 0;
             // 
             // tableLayoutPanel17
@@ -1007,7 +1007,7 @@
             tableLayoutPanel17.Name = "tableLayoutPanel17";
             tableLayoutPanel17.RowCount = 1;
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel17.Size = new Size(588, 24);
+            tableLayoutPanel17.Size = new Size(689, 25);
             tableLayoutPanel17.TabIndex = 1;
             // 
             // transactionIdLabel
@@ -1016,9 +1016,9 @@
             transactionIdLabel.Dock = DockStyle.Right;
             transactionIdLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             transactionIdLabel.ForeColor = Color.White;
-            transactionIdLabel.Location = new Point(415, 0);
+            transactionIdLabel.Location = new Point(516, 0);
             transactionIdLabel.Name = "transactionIdLabel";
-            transactionIdLabel.Size = new Size(170, 24);
+            transactionIdLabel.Size = new Size(170, 25);
             transactionIdLabel.TabIndex = 3;
             transactionIdLabel.Text = "Transaction ID: 10";
             transactionIdLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -1031,7 +1031,7 @@
             transactionTitleLabel.ForeColor = Color.White;
             transactionTitleLabel.Location = new Point(3, 0);
             transactionTitleLabel.Name = "transactionTitleLabel";
-            transactionTitleLabel.Size = new Size(89, 24);
+            transactionTitleLabel.Size = new Size(89, 25);
             transactionTitleLabel.TabIndex = 1;
             transactionTitleLabel.Text = "Items (x)";
             transactionTitleLabel.TextAlign = ContentAlignment.MiddleLeft;

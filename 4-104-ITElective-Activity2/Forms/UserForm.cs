@@ -33,6 +33,7 @@ namespace _4_104_ITElective_Activity2.Forms
         public UserForm(FormMode mode, User? target = null)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             _userService = ServiceLocator.Get<UserService>();
             Mode   = mode;
             Target = target;
@@ -129,26 +130,45 @@ namespace _4_104_ITElective_Activity2.Forms
 
             try
             {
-                var user = BuildUserFromForm();
-
                 if (Mode == FormMode.Add)
                 {
-                    await _userService.CreateUserAsync(
-                        user, formNewPasswordTxtBox.Text,
-                        PendingImageStream, PendingImageFileName, PendingImageContentType);
+                    await _userService.CreateUserAsync(new CreateUserDTO
+                    {
+                        Username         = formUsernameTxtBox.Text.Trim(),
+                        Password         = formNewPasswordTxtBox.Text,
+                        Role             = formRoleComboBox.SelectedItem!.ToString()!,
+                        FirstName        = NullIfEmpty(formFirstnameTxtBox.Text),
+                        MiddleName       = NullIfEmpty(formMiddlenameTxtBox.Text),
+                        LastName         = NullIfEmpty(formLastnameTxtBox.Text),
+                        Contact          = NullIfEmpty(formContactTxtBox.Text),
+                        PermanentAddress = NullIfEmpty(formPermanentAddressTxtBox.Text),
+                        CurrentAddress   = NullIfEmpty(formCurrentAddressTxtBox.Text),
+                        Gender           = GetGenderFromForm(),
+                        ImageStream      = PendingImageStream,
+                        ImageFileName    = PendingImageFileName,
+                        ImageContentType = PendingImageContentType,
+                    });
                 }
                 else
                 {
-                    user.Id        = Target!.Id;
-                    user.ImagePath = Target.ImagePath;
-
-                    string? newPassword = !string.IsNullOrWhiteSpace(formNewPasswordTxtBox.Text)
-                        ? formNewPasswordTxtBox.Text
-                        : null;
-
-                    await _userService.UpdateUserAsync(
-                        user, newPassword,
-                        PendingImageStream, PendingImageFileName, PendingImageContentType);
+                    await _userService.UpdateUserAsync(new UpdateUserDTO
+                    {
+                        Id               = Target!.Id,
+                        Username         = formUsernameTxtBox.Text.Trim(),
+                        Role             = formRoleComboBox.SelectedItem!.ToString()!,
+                        FirstName        = NullIfEmpty(formFirstnameTxtBox.Text),
+                        MiddleName       = NullIfEmpty(formMiddlenameTxtBox.Text),
+                        LastName         = NullIfEmpty(formLastnameTxtBox.Text),
+                        Contact          = NullIfEmpty(formContactTxtBox.Text),
+                        PermanentAddress = NullIfEmpty(formPermanentAddressTxtBox.Text),
+                        CurrentAddress   = NullIfEmpty(formCurrentAddressTxtBox.Text),
+                        Gender           = GetGenderFromForm(),
+                        NewPassword      = NullIfEmpty(formNewPasswordTxtBox.Text),
+                        ExistingImagePath = Target.ImagePath,
+                        ImageStream      = PendingImageStream,
+                        ImageFileName    = PendingImageFileName,
+                        ImageContentType = PendingImageContentType,
+                    });
                 }
 
                 DialogResult = DialogResult.OK;
@@ -163,25 +183,12 @@ namespace _4_104_ITElective_Activity2.Forms
             }
         }
 
-        private User BuildUserFromForm()
+        private string? GetGenderFromForm()
         {
-            string? gender = null;
-            if (radioButton1.Checked)      gender = "Male";
-            else if (radioButton2.Checked) gender = "Female";
-            else if (radioButton3.Checked) gender = "Other";
-
-            return new User
-            {
-                Username         = formUsernameTxtBox.Text.Trim(),
-                Role             = formRoleComboBox.SelectedItem!.ToString()!,
-                FirstName        = NullIfEmpty(formFirstnameTxtBox.Text),
-                MiddleName       = NullIfEmpty(formMiddlenameTxtBox.Text),
-                LastName         = NullIfEmpty(formLastnameTxtBox.Text),
-                Contact          = NullIfEmpty(formContactTxtBox.Text),
-                PermanentAddress = NullIfEmpty(formPermanentAddressTxtBox.Text),
-                CurrentAddress   = NullIfEmpty(formCurrentAddressTxtBox.Text),
-                Gender           = gender,
-            };
+            if (radioButton1.Checked) return "Male";
+            if (radioButton2.Checked) return "Female";
+            if (radioButton3.Checked) return "Other";
+            return null;
         }
 
         private static string? NullIfEmpty(string value)
@@ -215,12 +222,12 @@ namespace _4_104_ITElective_Activity2.Forms
             base.OnFormClosed(e);
         }
 
-        private void FillTextBoxes()
+        private async void FillTextBoxes()
         {
             if (Target == null) return;
 
             formUsernameTxtBox.Text           = Target.Username;
-            formRoleComboBox.SelectedItem     = Target.Role;        
+            formRoleComboBox.SelectedItem     = Target.Role;
             formFirstnameTxtBox.Text          = Target.FirstName        ?? string.Empty;
             formMiddlenameTxtBox.Text         = Target.MiddleName       ?? string.Empty;
             formLastnameTxtBox.Text           = Target.LastName         ?? string.Empty;
@@ -234,6 +241,10 @@ namespace _4_104_ITElective_Activity2.Forms
                 case "female": radioButton2.Checked = true; break;
                 case "other":  radioButton3.Checked = true; break;
             }
+
+            string? imageUrl = await _userService.GetProfileImageUrlAsync(Target.ImagePath);
+            if (imageUrl != null)
+                pictureBox1.Load(imageUrl);
         }
 
     }

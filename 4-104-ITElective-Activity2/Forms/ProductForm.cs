@@ -30,6 +30,7 @@ namespace _4_104_ITElective_Activity2.Forms
         public ProductForm(FormMode mode, Product? target = null)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             _productService = ServiceLocator.Get<ProductService>();
             Mode = mode;
             Target = target;
@@ -82,7 +83,7 @@ namespace _4_104_ITElective_Activity2.Forms
             PendingImageFileName = Path.GetFileName(dialog.FileName);
             PendingImageContentType = dialog.FileName.EndsWith(".png") ? "image/png" : "image/jpeg";
 
-            pictureBox1.Image = Image.FromFile(dialog.FileName);
+            pictureBox1.Image = Image.FromFile(dialog.FileName); 
         }
 
         private async void actnBtn_Click(object sender, EventArgs e)
@@ -137,12 +138,17 @@ namespace _4_104_ITElective_Activity2.Forms
             }
         }
 
-        private void FillTextBoxes()         {
+        private async void FillTextBoxes()
+        {
             if (Target == null) return;
 
             formProductnameTxtBox.Text = Target.name;
-            formPriceTxtBox.Text = Target.price.ToString();
-            checkBox1.Checked = Target.isAvailable;
+            formPriceTxtBox.Text       = Target.price.ToString();
+            checkBox1.Checked          = Target.isAvailable;
+
+            string? imageUrl = await _productService.GetProductImageUrlAsync(Target.imagePath);
+            if (imageUrl != null)
+                pictureBox1.Load(imageUrl);
         }
     }
 }
