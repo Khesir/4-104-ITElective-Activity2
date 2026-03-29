@@ -1,4 +1,3 @@
-﻿using _4_104_ITElective_Activity2.core;
 using _4_104_ITElective_Activity2.Core.Storage;
 
 namespace _4_104_ITElective_Activity2.modules.item
@@ -12,20 +11,21 @@ namespace _4_104_ITElective_Activity2.modules.item
         {
             _repository = repository;
             _minioStore = minioStore;
-
-            EventBus.Subscribe<AddItemDTO>(HandleAddItem);
-            EventBus.Subscribe<UpdateItemDTO>(HandleUpdateItem);
-            EventBus.Subscribe<LoadItemsRequestDTO>(HandleLoadItems);
         }
+
         public List<Product> GetAllProducts() => _repository.GetAll();
 
-        private void HandleLoadItems(LoadItemsRequestDTO dto)
+        public Task<List<Product>> GetAllProductsAsync() => _repository.GetAllAsync();
+
+        public Task DeleteProductAsync(int id) => _repository.DeleteAsync(id);
+
+        public Task<string?> GetProductImageUrlAsync(string? imagePath)
         {
-            var items = _repository.GetAll();
-            EventBus.Publish(new LoadItemsResultDTO { Items = items });
+            if (string.IsNullOrEmpty(imagePath)) return Task.FromResult<string?>(null);
+            return _minioStore.GetUrlAsync(imagePath)!;
         }
 
-        public void HandleAddItem(AddItemDTO dto)
+        public async Task AddProductAsync(AddItemDTO dto)
         {
             if (string.IsNullOrEmpty(dto.Name)) return;
             if (dto.Price == 0) return;
@@ -33,16 +33,13 @@ namespace _4_104_ITElective_Activity2.modules.item
             string imagePath = string.Empty;
 
             if (dto.ImageStream != null && dto.ImageFileName != null && dto.ImageContentType != null)
-                imagePath = _minioStore.UploadAsync(dto.ImageStream, dto.ImageFileName, dto.ImageContentType)
-                                       .GetAwaiter().GetResult();
+                imagePath = await _minioStore.UploadAsync(dto.ImageStream, dto.ImageFileName, dto.ImageContentType);
 
-            var entity = new Product(dto.Name, dto.Price, imagePath);
+            var entity = new Product(dto.Name, dto.Price, imagePath) { isAvailable = dto.IsAvailable };
             _repository.Add(entity);
-
-            EventBus.Publish(new AddItemResultDTO { Success = true, Message = "Item added successfully" });
         }
 
-        public void HandleUpdateItem(UpdateItemDTO dto)
+        public async Task UpdateProductAsync(UpdateItemDTO dto)
         {
             if (string.IsNullOrEmpty(dto.Name)) return;
 
@@ -53,21 +50,18 @@ namespace _4_104_ITElective_Activity2.modules.item
 
             if (dto.ImageStream != null && dto.ImageFileName != null && dto.ImageContentType != null)
             {
-                // Delete old image from MinIO if it exists
                 if (!string.IsNullOrEmpty(existing.imagePath))
-                    _minioStore.DeleteAsync(existing.imagePath).GetAwaiter().GetResult();
+                    await _minioStore.DeleteAsync(existing.imagePath);
 
-                imagePath = _minioStore.UploadAsync(dto.ImageStream, dto.ImageFileName, dto.ImageContentType)
-                                       .GetAwaiter().GetResult();
+                imagePath = await _minioStore.UploadAsync(dto.ImageStream, dto.ImageFileName, dto.ImageContentType);
             }
 
-            existing.name      = dto.Name;
-            existing.price     = dto.Price;
-            existing.imagePath = imagePath;
+            existing.name        = dto.Name;
+            existing.price       = dto.Price;
+            existing.imagePath   = imagePath;
+            existing.isAvailable = dto.IsAvailable;
 
             _repository.Update(existing);
-
-            EventBus.Publish(new AddItemResultDTO { Success = true, Message = "Item updated successfully" });
         }
     }
 }

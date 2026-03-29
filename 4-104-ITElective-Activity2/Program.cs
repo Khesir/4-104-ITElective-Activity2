@@ -64,7 +64,7 @@ namespace _4_104_ITElective_Activity2
                     container.Resolve<TransactionRepository>(),
                     container.Resolve<TransactionItemRepository>()));
             container.Singleton<UserService>(() =>
-                new UserService(container.Resolve<UserRepository>()));
+                new UserService(container.Resolve<UserRepository>(), container.Resolve<MinioStore>()));
             container.Singleton<Clock>(() => new Clock());
 
             ServiceLocator.Configure(container);

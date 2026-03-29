@@ -44,55 +44,56 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             SideBarTitle = new Label();
             SidebarDataList = new FlowLayoutPanel();
-            tabControl1 = new TabControl();
+            adminSideBarItem1 = new _4_104_ITElective_Activity2.Components.AdminSideBarItem();
+            TabControlPanel = new TabControl();
             UserPage = new TabPage();
-            tableLayoutPanel5 = new TableLayoutPanel();
+            userLayoutPanel = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
             tableLayoutPanel7 = new TableLayoutPanel();
             tableLayoutPanel8 = new TableLayoutPanel();
-            label6 = new Label();
-            label4 = new Label();
+            usernameLabel = new Label();
             label5 = new Label();
+            userRoleLabel = new Label();
+            label28 = new Label();
+            userIdLabel = new Label();
             label1 = new Label();
-            pictureBox1 = new PictureBox();
+            userPictureBox = new PictureBox();
             panel2 = new Panel();
             tableLayoutPanel9 = new TableLayoutPanel();
-            label8 = new Label();
+            userTotalTransactionLabel = new Label();
             label7 = new Label();
             tableLayoutPanel10 = new TableLayoutPanel();
-            label14 = new Label();
+            userContactLabel = new Label();
             label13 = new Label();
-            label16 = new Label();
+            userPermanentAddressLabel = new Label();
             label15 = new Label();
-            label18 = new Label();
+            userCurrentAddressLabel = new Label();
             label17 = new Label();
-            label12 = new Label();
+            userGenderLabel = new Label();
             label11 = new Label();
-            label10 = new Label();
+            userFullnameLabel = new Label();
             label9 = new Label();
             productPage = new TabPage();
-            tableLayoutPanel11 = new TableLayoutPanel();
+            productLayoutPanel = new TableLayoutPanel();
             tableLayoutPanel12 = new TableLayoutPanel();
             tableLayoutPanel13 = new TableLayoutPanel();
-            panel3 = new Panel();
-            button5 = new Button();
-            pictureBox2 = new PictureBox();
+            productPictureBox = new PictureBox();
             tableLayoutPanel14 = new TableLayoutPanel();
-            label22 = new Label();
+            productNameLabel = new Label();
             label20 = new Label();
-            label24 = new Label();
+            productPriceLabel = new Label();
             label23 = new Label();
-            label26 = new Label();
+            productAvailabilityLabel = new Label();
             label25 = new Label();
-            label19 = new Label();
+            productIdLabel = new Label();
             label21 = new Label();
             TransactionPage = new TabPage();
-            tableLayoutPanel15 = new TableLayoutPanel();
+            transactionLayoutPanel = new TableLayoutPanel();
             tableLayoutPanel16 = new TableLayoutPanel();
-            dataGridView1 = new DataGridView();
+            transactionItemDataGrid = new DataGridView();
             tableLayoutPanel17 = new TableLayoutPanel();
-            label29 = new Label();
-            label27 = new Label();
+            transactionIdLabel = new Label();
+            transactionTitleLabel = new Label();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -104,26 +105,26 @@
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            tabControl1.SuspendLayout();
+            SidebarDataList.SuspendLayout();
+            TabControlPanel.SuspendLayout();
             UserPage.SuspendLayout();
-            tableLayoutPanel5.SuspendLayout();
+            userLayoutPanel.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
             tableLayoutPanel7.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)userPictureBox).BeginInit();
             tableLayoutPanel9.SuspendLayout();
             tableLayoutPanel10.SuspendLayout();
             productPage.SuspendLayout();
-            tableLayoutPanel11.SuspendLayout();
+            productLayoutPanel.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
             tableLayoutPanel13.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productPictureBox).BeginInit();
             tableLayoutPanel14.SuspendLayout();
             TransactionPage.SuspendLayout();
-            tableLayoutPanel15.SuspendLayout();
+            transactionLayoutPanel.SuspendLayout();
             tableLayoutPanel16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)transactionItemDataGrid).BeginInit();
             tableLayoutPanel17.SuspendLayout();
             SuspendLayout();
             // 
@@ -182,30 +183,36 @@
             // 
             // addBtn
             // 
+            addBtn.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addBtn.Location = new Point(3, 3);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(75, 23);
             addBtn.TabIndex = 0;
             addBtn.Text = "Add";
             addBtn.UseVisualStyleBackColor = true;
+            addBtn.Click += addBtn_Click;
             // 
             // EditBtn
             // 
+            EditBtn.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             EditBtn.Location = new Point(84, 3);
             EditBtn.Name = "EditBtn";
             EditBtn.Size = new Size(75, 23);
             EditBtn.TabIndex = 1;
             EditBtn.Text = "Edit";
             EditBtn.UseVisualStyleBackColor = true;
+            EditBtn.Click += EditBtn_Click;
             // 
             // DeleteBtn
             // 
+            DeleteBtn.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DeleteBtn.Location = new Point(165, 3);
             DeleteBtn.Name = "DeleteBtn";
             DeleteBtn.Size = new Size(75, 23);
             DeleteBtn.TabIndex = 2;
             DeleteBtn.Text = "Delete";
             DeleteBtn.UseVisualStyleBackColor = true;
+            DeleteBtn.Click += DeleteBtn_Click;
             // 
             // label2
             // 
@@ -248,7 +255,7 @@
             ClockLabel.Size = new Size(236, 37);
             ClockLabel.TabIndex = 2;
             ClockLabel.Text = "MM/DD/YY-HH/MM/SS";
-            ClockLabel.TextAlign = ContentAlignment.MiddleRight;
+            ClockLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
@@ -266,6 +273,7 @@
             // logoutIcon
             // 
             logoutIcon.Cursor = Cursors.Hand;
+            logoutIcon.Dock = DockStyle.Fill;
             logoutIcon.Image = Properties.Resources.logout_8_32;
             logoutIcon.Location = new Point(555, 3);
             logoutIcon.Name = "logoutIcon";
@@ -286,7 +294,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(tabControl1);
+            splitContainer1.Panel2.Controls.Add(TabControlPanel);
             splitContainer1.Size = new Size(1107, 561);
             splitContainer1.SplitterDistance = 369;
             splitContainer1.TabIndex = 1;
@@ -321,29 +329,42 @@
             // 
             // SidebarDataList
             // 
+            SidebarDataList.Controls.Add(adminSideBarItem1);
             SidebarDataList.Dock = DockStyle.Fill;
             SidebarDataList.Location = new Point(3, 45);
             SidebarDataList.Name = "SidebarDataList";
             SidebarDataList.Size = new Size(363, 513);
             SidebarDataList.TabIndex = 1;
             // 
-            // tabControl1
+            // adminSideBarItem1
             // 
-            tabControl1.Controls.Add(UserPage);
-            tabControl1.Controls.Add(productPage);
-            tabControl1.Controls.Add(TransactionPage);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(734, 561);
-            tabControl1.TabIndex = 0;
-            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+            adminSideBarItem1.BackColor = Color.FromArgb(0, 63, 47);
+            adminSideBarItem1.Description = "₱ 180.00";
+            adminSideBarItem1.Id = null;
+            adminSideBarItem1.Location = new Point(3, 3);
+            adminSideBarItem1.Name = "adminSideBarItem1";
+            adminSideBarItem1.Size = new Size(360, 86);
+            adminSideBarItem1.TabIndex = 0;
+            adminSideBarItem1.Title = "Creamy Pure Matcha Latte";
+            // 
+            // TabControlPanel
+            // 
+            TabControlPanel.Controls.Add(UserPage);
+            TabControlPanel.Controls.Add(productPage);
+            TabControlPanel.Controls.Add(TransactionPage);
+            TabControlPanel.Dock = DockStyle.Fill;
+            TabControlPanel.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TabControlPanel.Location = new Point(0, 0);
+            TabControlPanel.Name = "TabControlPanel";
+            TabControlPanel.SelectedIndex = 0;
+            TabControlPanel.Size = new Size(734, 561);
+            TabControlPanel.TabIndex = 0;
+            TabControlPanel.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // UserPage
             // 
             UserPage.BackColor = Color.FromArgb(7, 48, 43);
-            UserPage.Controls.Add(tableLayoutPanel5);
+            UserPage.Controls.Add(userLayoutPanel);
             UserPage.Location = new Point(4, 24);
             UserPage.Name = "UserPage";
             UserPage.Padding = new Padding(3);
@@ -351,22 +372,22 @@
             UserPage.TabIndex = 0;
             UserPage.Text = "Users";
             // 
-            // tableLayoutPanel5
+            // userLayoutPanel
             // 
-            tableLayoutPanel5.ColumnCount = 3;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 679F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 1, 1);
-            tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(3, 3);
-            tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 3;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 500F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 66F));
-            tableLayoutPanel5.Size = new Size(720, 527);
-            tableLayoutPanel5.TabIndex = 0;
+            userLayoutPanel.ColumnCount = 3;
+            userLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            userLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 679F));
+            userLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            userLayoutPanel.Controls.Add(tableLayoutPanel6, 1, 1);
+            userLayoutPanel.Dock = DockStyle.Fill;
+            userLayoutPanel.Location = new Point(3, 3);
+            userLayoutPanel.Name = "userLayoutPanel";
+            userLayoutPanel.RowCount = 3;
+            userLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
+            userLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 500F));
+            userLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 66F));
+            userLayoutPanel.Size = new Size(720, 527);
+            userLayoutPanel.TabIndex = 0;
             // 
             // tableLayoutPanel6
             // 
@@ -389,7 +410,7 @@
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.5862064F));
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.4137955F));
             tableLayoutPanel7.Controls.Add(tableLayoutPanel8, 1, 0);
-            tableLayoutPanel7.Controls.Add(pictureBox1, 0, 0);
+            tableLayoutPanel7.Controls.Add(userPictureBox, 0, 0);
             tableLayoutPanel7.Controls.Add(panel2, 0, 1);
             tableLayoutPanel7.Controls.Add(tableLayoutPanel9, 1, 1);
             tableLayoutPanel7.Dock = DockStyle.Fill;
@@ -406,9 +427,11 @@
             tableLayoutPanel8.ColumnCount = 2;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.8490562F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.15094F));
-            tableLayoutPanel8.Controls.Add(label6, 1, 1);
-            tableLayoutPanel8.Controls.Add(label4, 1, 0);
+            tableLayoutPanel8.Controls.Add(usernameLabel, 1, 1);
             tableLayoutPanel8.Controls.Add(label5, 0, 1);
+            tableLayoutPanel8.Controls.Add(userRoleLabel, 1, 2);
+            tableLayoutPanel8.Controls.Add(label28, 0, 2);
+            tableLayoutPanel8.Controls.Add(userIdLabel, 1, 0);
             tableLayoutPanel8.Controls.Add(label1, 0, 0);
             tableLayoutPanel8.Dock = DockStyle.Fill;
             tableLayoutPanel8.Location = new Point(187, 3);
@@ -416,35 +439,22 @@
             tableLayoutPanel8.RowCount = 3;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
             tableLayoutPanel8.Size = new Size(477, 154);
             tableLayoutPanel8.TabIndex = 0;
             // 
-            // label6
+            // usernameLabel
             // 
-            label6.AutoSize = true;
-            label6.Dock = DockStyle.Fill;
-            label6.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(174, 67);
-            label6.Name = "label6";
-            label6.Size = new Size(300, 67);
-            label6.TabIndex = 5;
-            label6.Text = "Admin";
-            label6.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Dock = DockStyle.Fill;
-            label4.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(174, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(300, 67);
-            label4.TabIndex = 4;
-            label4.Text = "Username";
-            label4.TextAlign = ContentAlignment.MiddleLeft;
+            usernameLabel.AutoSize = true;
+            usernameLabel.Dock = DockStyle.Fill;
+            usernameLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            usernameLabel.ForeColor = Color.White;
+            usernameLabel.Location = new Point(174, 54);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Size = new Size(300, 54);
+            usernameLabel.TabIndex = 9;
+            usernameLabel.Text = "Username";
+            usernameLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
@@ -452,12 +462,51 @@
             label5.Dock = DockStyle.Fill;
             label5.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(3, 67);
+            label5.Location = new Point(3, 54);
             label5.Name = "label5";
-            label5.Size = new Size(165, 67);
-            label5.TabIndex = 3;
-            label5.Text = "Role:";
+            label5.Size = new Size(165, 54);
+            label5.TabIndex = 8;
+            label5.Text = "Username:";
             label5.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // userRoleLabel
+            // 
+            userRoleLabel.AutoSize = true;
+            userRoleLabel.Dock = DockStyle.Fill;
+            userRoleLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userRoleLabel.ForeColor = Color.White;
+            userRoleLabel.Location = new Point(174, 108);
+            userRoleLabel.Name = "userRoleLabel";
+            userRoleLabel.Size = new Size(300, 46);
+            userRoleLabel.TabIndex = 7;
+            userRoleLabel.Text = "Admin";
+            userRoleLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Dock = DockStyle.Fill;
+            label28.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label28.ForeColor = Color.White;
+            label28.Location = new Point(3, 108);
+            label28.Name = "label28";
+            label28.Size = new Size(165, 46);
+            label28.TabIndex = 6;
+            label28.Text = "Role:";
+            label28.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // userIdLabel
+            // 
+            userIdLabel.AutoSize = true;
+            userIdLabel.Dock = DockStyle.Fill;
+            userIdLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userIdLabel.ForeColor = Color.White;
+            userIdLabel.Location = new Point(174, 0);
+            userIdLabel.Name = "userIdLabel";
+            userIdLabel.Size = new Size(300, 54);
+            userIdLabel.TabIndex = 4;
+            userIdLabel.Text = "userIdLabel";
+            userIdLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
@@ -467,21 +516,21 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(165, 67);
+            label1.Size = new Size(165, 54);
             label1.TabIndex = 1;
-            label1.Text = "Username:";
+            label1.Text = "ID:";
             label1.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // pictureBox1
+            // userPictureBox
             // 
-            pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Image = Properties.Resources.Screenshot_2026_02_06_101444;
-            pictureBox1.Location = new Point(3, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(178, 154);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
+            userPictureBox.Dock = DockStyle.Fill;
+            userPictureBox.Image = Properties.Resources.images__2_;
+            userPictureBox.Location = new Point(3, 3);
+            userPictureBox.Name = "userPictureBox";
+            userPictureBox.Size = new Size(178, 154);
+            userPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            userPictureBox.TabIndex = 1;
+            userPictureBox.TabStop = false;
             // 
             // panel2
             // 
@@ -497,7 +546,7 @@
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 52.1341476F));
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 47.8658524F));
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 148F));
-            tableLayoutPanel9.Controls.Add(label8, 1, 0);
+            tableLayoutPanel9.Controls.Add(userTotalTransactionLabel, 1, 0);
             tableLayoutPanel9.Controls.Add(label7, 0, 0);
             tableLayoutPanel9.Dock = DockStyle.Fill;
             tableLayoutPanel9.Location = new Point(187, 163);
@@ -507,18 +556,18 @@
             tableLayoutPanel9.Size = new Size(477, 45);
             tableLayoutPanel9.TabIndex = 3;
             // 
-            // label8
+            // userTotalTransactionLabel
             // 
-            label8.AutoSize = true;
-            label8.Dock = DockStyle.Fill;
-            label8.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.White;
-            label8.Location = new Point(174, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(151, 45);
-            label8.TabIndex = 6;
-            label8.Text = "1000";
-            label8.TextAlign = ContentAlignment.MiddleLeft;
+            userTotalTransactionLabel.AutoSize = true;
+            userTotalTransactionLabel.Dock = DockStyle.Fill;
+            userTotalTransactionLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userTotalTransactionLabel.ForeColor = Color.White;
+            userTotalTransactionLabel.Location = new Point(174, 0);
+            userTotalTransactionLabel.Name = "userTotalTransactionLabel";
+            userTotalTransactionLabel.Size = new Size(151, 45);
+            userTotalTransactionLabel.TabIndex = 6;
+            userTotalTransactionLabel.Text = "1000";
+            userTotalTransactionLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
@@ -539,15 +588,15 @@
             tableLayoutPanel10.ColumnCount = 2;
             tableLayoutPanel10.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.927927F));
             tableLayoutPanel10.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.0720749F));
-            tableLayoutPanel10.Controls.Add(label14, 1, 2);
+            tableLayoutPanel10.Controls.Add(userContactLabel, 1, 2);
             tableLayoutPanel10.Controls.Add(label13, 0, 2);
-            tableLayoutPanel10.Controls.Add(label16, 1, 3);
+            tableLayoutPanel10.Controls.Add(userPermanentAddressLabel, 1, 3);
             tableLayoutPanel10.Controls.Add(label15, 0, 3);
-            tableLayoutPanel10.Controls.Add(label18, 1, 4);
+            tableLayoutPanel10.Controls.Add(userCurrentAddressLabel, 1, 4);
             tableLayoutPanel10.Controls.Add(label17, 0, 4);
-            tableLayoutPanel10.Controls.Add(label12, 1, 1);
+            tableLayoutPanel10.Controls.Add(userGenderLabel, 1, 1);
             tableLayoutPanel10.Controls.Add(label11, 0, 1);
-            tableLayoutPanel10.Controls.Add(label10, 1, 0);
+            tableLayoutPanel10.Controls.Add(userFullnameLabel, 1, 0);
             tableLayoutPanel10.Controls.Add(label9, 0, 0);
             tableLayoutPanel10.Dock = DockStyle.Fill;
             tableLayoutPanel10.Location = new Point(3, 220);
@@ -562,18 +611,18 @@
             tableLayoutPanel10.Size = new Size(667, 271);
             tableLayoutPanel10.TabIndex = 1;
             // 
-            // label14
+            // userContactLabel
             // 
-            label14.AutoSize = true;
-            label14.Dock = DockStyle.Fill;
-            label14.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.ForeColor = Color.White;
-            label14.Location = new Point(190, 136);
-            label14.Name = "label14";
-            label14.Size = new Size(473, 42);
-            label14.TabIndex = 19;
-            label14.Text = "09329523019";
-            label14.TextAlign = ContentAlignment.MiddleLeft;
+            userContactLabel.AutoSize = true;
+            userContactLabel.Dock = DockStyle.Fill;
+            userContactLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userContactLabel.ForeColor = Color.White;
+            userContactLabel.Location = new Point(190, 136);
+            userContactLabel.Name = "userContactLabel";
+            userContactLabel.Size = new Size(473, 42);
+            userContactLabel.TabIndex = 19;
+            userContactLabel.Text = "09329523019";
+            userContactLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label13
             // 
@@ -588,18 +637,18 @@
             label13.Text = "Contact:";
             label13.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label16
+            // userPermanentAddressLabel
             // 
-            label16.AutoSize = true;
-            label16.Dock = DockStyle.Fill;
-            label16.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.ForeColor = Color.White;
-            label16.Location = new Point(190, 179);
-            label16.Name = "label16";
-            label16.Size = new Size(473, 50);
-            label16.TabIndex = 17;
-            label16.Text = "Davao City";
-            label16.TextAlign = ContentAlignment.MiddleLeft;
+            userPermanentAddressLabel.AutoSize = true;
+            userPermanentAddressLabel.Dock = DockStyle.Fill;
+            userPermanentAddressLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userPermanentAddressLabel.ForeColor = Color.White;
+            userPermanentAddressLabel.Location = new Point(190, 179);
+            userPermanentAddressLabel.Name = "userPermanentAddressLabel";
+            userPermanentAddressLabel.Size = new Size(473, 50);
+            userPermanentAddressLabel.TabIndex = 17;
+            userPermanentAddressLabel.Text = "Davao City";
+            userPermanentAddressLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label15
             // 
@@ -614,18 +663,18 @@
             label15.Text = "Permanent Address:";
             label15.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label18
+            // userCurrentAddressLabel
             // 
-            label18.AutoSize = true;
-            label18.Dock = DockStyle.Fill;
-            label18.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label18.ForeColor = Color.White;
-            label18.Location = new Point(190, 230);
-            label18.Name = "label18";
-            label18.Size = new Size(473, 40);
-            label18.TabIndex = 15;
-            label18.Text = "Davao City";
-            label18.TextAlign = ContentAlignment.MiddleLeft;
+            userCurrentAddressLabel.AutoSize = true;
+            userCurrentAddressLabel.Dock = DockStyle.Fill;
+            userCurrentAddressLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userCurrentAddressLabel.ForeColor = Color.White;
+            userCurrentAddressLabel.Location = new Point(190, 230);
+            userCurrentAddressLabel.Name = "userCurrentAddressLabel";
+            userCurrentAddressLabel.Size = new Size(473, 40);
+            userCurrentAddressLabel.TabIndex = 15;
+            userCurrentAddressLabel.Text = "Davao City";
+            userCurrentAddressLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label17
             // 
@@ -640,18 +689,18 @@
             label17.Text = "Current Address:";
             label17.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label12
+            // userGenderLabel
             // 
-            label12.AutoSize = true;
-            label12.Dock = DockStyle.Fill;
-            label12.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.ForeColor = Color.White;
-            label12.Location = new Point(190, 69);
-            label12.Name = "label12";
-            label12.Size = new Size(473, 66);
-            label12.TabIndex = 8;
-            label12.Text = "Male";
-            label12.TextAlign = ContentAlignment.MiddleLeft;
+            userGenderLabel.AutoSize = true;
+            userGenderLabel.Dock = DockStyle.Fill;
+            userGenderLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userGenderLabel.ForeColor = Color.White;
+            userGenderLabel.Location = new Point(190, 69);
+            userGenderLabel.Name = "userGenderLabel";
+            userGenderLabel.Size = new Size(473, 66);
+            userGenderLabel.TabIndex = 8;
+            userGenderLabel.Text = "Male";
+            userGenderLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label11
             // 
@@ -666,18 +715,18 @@
             label11.Text = "Gender:";
             label11.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label10
+            // userFullnameLabel
             // 
-            label10.AutoSize = true;
-            label10.Dock = DockStyle.Fill;
-            label10.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.ForeColor = Color.White;
-            label10.Location = new Point(190, 1);
-            label10.Name = "label10";
-            label10.Size = new Size(473, 67);
-            label10.TabIndex = 6;
-            label10.Text = "Doe, Jhon E.";
-            label10.TextAlign = ContentAlignment.MiddleLeft;
+            userFullnameLabel.AutoSize = true;
+            userFullnameLabel.Dock = DockStyle.Fill;
+            userFullnameLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userFullnameLabel.ForeColor = Color.White;
+            userFullnameLabel.Location = new Point(190, 1);
+            userFullnameLabel.Name = "userFullnameLabel";
+            userFullnameLabel.Size = new Size(473, 67);
+            userFullnameLabel.TabIndex = 6;
+            userFullnameLabel.Text = "Doe, Jhon E.";
+            userFullnameLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label9
             // 
@@ -695,7 +744,7 @@
             // productPage
             // 
             productPage.BackColor = Color.FromArgb(7, 48, 43);
-            productPage.Controls.Add(tableLayoutPanel11);
+            productPage.Controls.Add(productLayoutPanel);
             productPage.Location = new Point(4, 24);
             productPage.Name = "productPage";
             productPage.Padding = new Padding(3);
@@ -703,22 +752,22 @@
             productPage.TabIndex = 1;
             productPage.Text = "Products";
             // 
-            // tableLayoutPanel11
+            // productLayoutPanel
             // 
-            tableLayoutPanel11.ColumnCount = 3;
-            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.866953F));
-            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 93.13305F));
-            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
-            tableLayoutPanel11.Controls.Add(tableLayoutPanel12, 1, 1);
-            tableLayoutPanel11.Dock = DockStyle.Fill;
-            tableLayoutPanel11.Location = new Point(3, 3);
-            tableLayoutPanel11.Name = "tableLayoutPanel11";
-            tableLayoutPanel11.RowCount = 3;
-            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Absolute, 549F));
-            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Absolute, 18F));
-            tableLayoutPanel11.Size = new Size(720, 527);
-            tableLayoutPanel11.TabIndex = 0;
+            productLayoutPanel.ColumnCount = 3;
+            productLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            productLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 600F));
+            productLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
+            productLayoutPanel.Controls.Add(tableLayoutPanel12, 1, 1);
+            productLayoutPanel.Dock = DockStyle.Fill;
+            productLayoutPanel.Location = new Point(3, 3);
+            productLayoutPanel.Name = "productLayoutPanel";
+            productLayoutPanel.RowCount = 3;
+            productLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            productLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 549F));
+            productLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 18F));
+            productLayoutPanel.Size = new Size(720, 527);
+            productLayoutPanel.TabIndex = 0;
             // 
             // tableLayoutPanel12
             // 
@@ -728,12 +777,12 @@
             tableLayoutPanel12.Controls.Add(tableLayoutPanel13, 0, 0);
             tableLayoutPanel12.Controls.Add(tableLayoutPanel14, 1, 0);
             tableLayoutPanel12.Dock = DockStyle.Fill;
-            tableLayoutPanel12.Location = new Point(49, 23);
+            tableLayoutPanel12.Location = new Point(87, 23);
             tableLayoutPanel12.Name = "tableLayoutPanel12";
             tableLayoutPanel12.RowCount = 2;
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 42.990654F));
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 57.009346F));
-            tableLayoutPanel12.Size = new Size(631, 543);
+            tableLayoutPanel12.Size = new Size(594, 543);
             tableLayoutPanel12.TabIndex = 0;
             // 
             // tableLayoutPanel13
@@ -742,45 +791,27 @@
             tableLayoutPanel13.ColumnCount = 1;
             tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel13.Controls.Add(panel3, 0, 1);
-            tableLayoutPanel13.Controls.Add(pictureBox2, 0, 0);
+            tableLayoutPanel13.Controls.Add(productPictureBox, 0, 0);
             tableLayoutPanel13.Dock = DockStyle.Fill;
             tableLayoutPanel13.Location = new Point(3, 3);
             tableLayoutPanel13.Name = "tableLayoutPanel13";
             tableLayoutPanel13.RowCount = 2;
             tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 72.22222F));
             tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 27.7777786F));
-            tableLayoutPanel13.Size = new Size(166, 227);
+            tableLayoutPanel13.Size = new Size(155, 227);
             tableLayoutPanel13.TabIndex = 0;
             tableLayoutPanel13.Paint += tableLayoutPanel13_Paint;
             // 
-            // panel3
+            // productPictureBox
             // 
-            panel3.Controls.Add(button5);
-            panel3.Location = new Point(4, 166);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(154, 41);
-            panel3.TabIndex = 0;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(29, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(106, 23);
-            button5.TabIndex = 0;
-            button5.Text = "Change Image";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Dock = DockStyle.Fill;
-            pictureBox2.Image = Properties.Resources.Screenshot_2026_02_06_101444;
-            pictureBox2.Location = new Point(4, 4);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(158, 155);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
+            productPictureBox.Dock = DockStyle.Fill;
+            productPictureBox.Image = Properties.Resources.images__2_;
+            productPictureBox.Location = new Point(4, 4);
+            productPictureBox.Name = "productPictureBox";
+            productPictureBox.Size = new Size(147, 155);
+            productPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            productPictureBox.TabIndex = 1;
+            productPictureBox.TabStop = false;
             // 
             // tableLayoutPanel14
             // 
@@ -788,37 +819,37 @@
             tableLayoutPanel14.ColumnCount = 2;
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.25499F));
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.74501F));
-            tableLayoutPanel14.Controls.Add(label22, 1, 1);
+            tableLayoutPanel14.Controls.Add(productNameLabel, 1, 1);
             tableLayoutPanel14.Controls.Add(label20, 0, 1);
-            tableLayoutPanel14.Controls.Add(label24, 1, 2);
+            tableLayoutPanel14.Controls.Add(productPriceLabel, 1, 2);
             tableLayoutPanel14.Controls.Add(label23, 0, 2);
-            tableLayoutPanel14.Controls.Add(label26, 1, 3);
+            tableLayoutPanel14.Controls.Add(productAvailabilityLabel, 1, 3);
             tableLayoutPanel14.Controls.Add(label25, 0, 3);
-            tableLayoutPanel14.Controls.Add(label19, 1, 0);
+            tableLayoutPanel14.Controls.Add(productIdLabel, 1, 0);
             tableLayoutPanel14.Controls.Add(label21, 0, 0);
             tableLayoutPanel14.Dock = DockStyle.Fill;
-            tableLayoutPanel14.Location = new Point(175, 3);
+            tableLayoutPanel14.Location = new Point(164, 3);
             tableLayoutPanel14.Name = "tableLayoutPanel14";
             tableLayoutPanel14.RowCount = 4;
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Percent, 53.19149F));
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Percent, 46.80851F));
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Absolute, 39F));
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
-            tableLayoutPanel14.Size = new Size(453, 227);
+            tableLayoutPanel14.Size = new Size(427, 227);
             tableLayoutPanel14.TabIndex = 1;
             // 
-            // label22
+            // productNameLabel
             // 
-            label22.AutoSize = true;
-            label22.Dock = DockStyle.Fill;
-            label22.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.ForeColor = Color.White;
-            label22.Location = new Point(163, 77);
-            label22.Name = "label22";
-            label22.Size = new Size(286, 66);
-            label22.TabIndex = 18;
-            label22.Text = "XX Creamy Latte ";
-            label22.TextAlign = ContentAlignment.MiddleLeft;
+            productNameLabel.AutoSize = true;
+            productNameLabel.Dock = DockStyle.Fill;
+            productNameLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            productNameLabel.ForeColor = Color.White;
+            productNameLabel.Location = new Point(154, 77);
+            productNameLabel.Name = "productNameLabel";
+            productNameLabel.Size = new Size(269, 66);
+            productNameLabel.TabIndex = 18;
+            productNameLabel.Text = "XX Creamy Latte ";
+            productNameLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label20
             // 
@@ -828,23 +859,23 @@
             label20.ForeColor = Color.White;
             label20.Location = new Point(4, 77);
             label20.Name = "label20";
-            label20.Size = new Size(152, 66);
+            label20.Size = new Size(143, 66);
             label20.TabIndex = 17;
             label20.Text = "Product Name:";
             label20.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label24
+            // productPriceLabel
             // 
-            label24.AutoSize = true;
-            label24.Dock = DockStyle.Fill;
-            label24.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label24.ForeColor = Color.White;
-            label24.Location = new Point(163, 144);
-            label24.Name = "label24";
-            label24.Size = new Size(286, 39);
-            label24.TabIndex = 16;
-            label24.Text = "10,000";
-            label24.TextAlign = ContentAlignment.MiddleLeft;
+            productPriceLabel.AutoSize = true;
+            productPriceLabel.Dock = DockStyle.Fill;
+            productPriceLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            productPriceLabel.ForeColor = Color.White;
+            productPriceLabel.Location = new Point(154, 144);
+            productPriceLabel.Name = "productPriceLabel";
+            productPriceLabel.Size = new Size(269, 39);
+            productPriceLabel.TabIndex = 16;
+            productPriceLabel.Text = "10,000";
+            productPriceLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label23
             // 
@@ -854,23 +885,23 @@
             label23.ForeColor = Color.White;
             label23.Location = new Point(4, 144);
             label23.Name = "label23";
-            label23.Size = new Size(152, 39);
+            label23.Size = new Size(143, 39);
             label23.TabIndex = 15;
             label23.Text = "Price:";
             label23.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label26
+            // productAvailabilityLabel
             // 
-            label26.AutoSize = true;
-            label26.Dock = DockStyle.Fill;
-            label26.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label26.ForeColor = Color.White;
-            label26.Location = new Point(163, 184);
-            label26.Name = "label26";
-            label26.Size = new Size(286, 42);
-            label26.TabIndex = 14;
-            label26.Text = "Yes";
-            label26.TextAlign = ContentAlignment.MiddleLeft;
+            productAvailabilityLabel.AutoSize = true;
+            productAvailabilityLabel.Dock = DockStyle.Fill;
+            productAvailabilityLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            productAvailabilityLabel.ForeColor = Color.White;
+            productAvailabilityLabel.Location = new Point(154, 184);
+            productAvailabilityLabel.Name = "productAvailabilityLabel";
+            productAvailabilityLabel.Size = new Size(269, 42);
+            productAvailabilityLabel.TabIndex = 14;
+            productAvailabilityLabel.Text = "Yes";
+            productAvailabilityLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label25
             // 
@@ -880,23 +911,23 @@
             label25.ForeColor = Color.White;
             label25.Location = new Point(4, 184);
             label25.Name = "label25";
-            label25.Size = new Size(152, 42);
+            label25.Size = new Size(143, 42);
             label25.TabIndex = 13;
             label25.Text = "Is Available:";
             label25.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label19
+            // productIdLabel
             // 
-            label19.AutoSize = true;
-            label19.Dock = DockStyle.Fill;
-            label19.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label19.ForeColor = Color.White;
-            label19.Location = new Point(163, 1);
-            label19.Name = "label19";
-            label19.Size = new Size(286, 75);
-            label19.TabIndex = 5;
-            label19.Text = "1";
-            label19.TextAlign = ContentAlignment.MiddleLeft;
+            productIdLabel.AutoSize = true;
+            productIdLabel.Dock = DockStyle.Fill;
+            productIdLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            productIdLabel.ForeColor = Color.White;
+            productIdLabel.Location = new Point(154, 1);
+            productIdLabel.Name = "productIdLabel";
+            productIdLabel.Size = new Size(269, 75);
+            productIdLabel.TabIndex = 5;
+            productIdLabel.Text = "1";
+            productIdLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label21
             // 
@@ -906,7 +937,7 @@
             label21.ForeColor = Color.White;
             label21.Location = new Point(4, 1);
             label21.Name = "label21";
-            label21.Size = new Size(152, 75);
+            label21.Size = new Size(143, 75);
             label21.TabIndex = 4;
             label21.Text = "Product ID:";
             label21.TextAlign = ContentAlignment.MiddleRight;
@@ -914,7 +945,7 @@
             // TransactionPage
             // 
             TransactionPage.BackColor = Color.FromArgb(7, 48, 43);
-            TransactionPage.Controls.Add(tableLayoutPanel15);
+            TransactionPage.Controls.Add(transactionLayoutPanel);
             TransactionPage.Location = new Point(4, 24);
             TransactionPage.Name = "TransactionPage";
             TransactionPage.Padding = new Padding(3);
@@ -922,46 +953,46 @@
             TransactionPage.TabIndex = 2;
             TransactionPage.Text = "Transaction";
             // 
-            // tableLayoutPanel15
+            // transactionLayoutPanel
             // 
-            tableLayoutPanel15.ColumnCount = 3;
-            tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3.00429177F));
-            tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 96.9957047F));
-            tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel15.Controls.Add(tableLayoutPanel16, 1, 1);
-            tableLayoutPanel15.Dock = DockStyle.Fill;
-            tableLayoutPanel15.Location = new Point(3, 3);
-            tableLayoutPanel15.Name = "tableLayoutPanel15";
-            tableLayoutPanel15.RowCount = 3;
-            tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 2.964427F));
-            tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 97.0355759F));
-            tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel15.Size = new Size(720, 527);
-            tableLayoutPanel15.TabIndex = 0;
+            transactionLayoutPanel.ColumnCount = 3;
+            transactionLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.6666641F));
+            transactionLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 600F));
+            transactionLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            transactionLayoutPanel.Controls.Add(tableLayoutPanel16, 1, 1);
+            transactionLayoutPanel.Dock = DockStyle.Fill;
+            transactionLayoutPanel.Location = new Point(3, 3);
+            transactionLayoutPanel.Name = "transactionLayoutPanel";
+            transactionLayoutPanel.RowCount = 3;
+            transactionLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            transactionLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            transactionLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            transactionLayoutPanel.Size = new Size(720, 527);
+            transactionLayoutPanel.TabIndex = 0;
             // 
             // tableLayoutPanel16
             // 
             tableLayoutPanel16.ColumnCount = 1;
             tableLayoutPanel16.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel16.Controls.Add(dataGridView1, 0, 1);
+            tableLayoutPanel16.Controls.Add(transactionItemDataGrid, 0, 1);
             tableLayoutPanel16.Controls.Add(tableLayoutPanel17, 0, 0);
             tableLayoutPanel16.Dock = DockStyle.Fill;
-            tableLayoutPanel16.Location = new Point(24, 18);
+            tableLayoutPanel16.Location = new Point(82, 23);
             tableLayoutPanel16.Name = "tableLayoutPanel16";
             tableLayoutPanel16.RowCount = 2;
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 6.39175272F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 93.6082458F));
-            tableLayoutPanel16.Size = new Size(672, 485);
+            tableLayoutPanel16.Size = new Size(594, 481);
             tableLayoutPanel16.TabIndex = 0;
             // 
-            // dataGridView1
+            // transactionItemDataGrid
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 34);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(666, 448);
-            dataGridView1.TabIndex = 0;
+            transactionItemDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            transactionItemDataGrid.Dock = DockStyle.Fill;
+            transactionItemDataGrid.Location = new Point(3, 33);
+            transactionItemDataGrid.Name = "transactionItemDataGrid";
+            transactionItemDataGrid.Size = new Size(588, 445);
+            transactionItemDataGrid.TabIndex = 0;
             // 
             // tableLayoutPanel17
             // 
@@ -969,41 +1000,41 @@
             tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.572464F));
             tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 57.427536F));
             tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 226F));
-            tableLayoutPanel17.Controls.Add(label29, 2, 0);
-            tableLayoutPanel17.Controls.Add(label27, 0, 0);
+            tableLayoutPanel17.Controls.Add(transactionIdLabel, 2, 0);
+            tableLayoutPanel17.Controls.Add(transactionTitleLabel, 0, 0);
             tableLayoutPanel17.Dock = DockStyle.Fill;
             tableLayoutPanel17.Location = new Point(3, 3);
             tableLayoutPanel17.Name = "tableLayoutPanel17";
             tableLayoutPanel17.RowCount = 1;
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel17.Size = new Size(666, 25);
+            tableLayoutPanel17.Size = new Size(588, 24);
             tableLayoutPanel17.TabIndex = 1;
             // 
-            // label29
+            // transactionIdLabel
             // 
-            label29.AutoSize = true;
-            label29.Dock = DockStyle.Right;
-            label29.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label29.ForeColor = Color.White;
-            label29.Location = new Point(493, 0);
-            label29.Name = "label29";
-            label29.Size = new Size(170, 25);
-            label29.TabIndex = 3;
-            label29.Text = "Transaction ID: 10";
-            label29.TextAlign = ContentAlignment.MiddleLeft;
+            transactionIdLabel.AutoSize = true;
+            transactionIdLabel.Dock = DockStyle.Right;
+            transactionIdLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            transactionIdLabel.ForeColor = Color.White;
+            transactionIdLabel.Location = new Point(415, 0);
+            transactionIdLabel.Name = "transactionIdLabel";
+            transactionIdLabel.Size = new Size(170, 24);
+            transactionIdLabel.TabIndex = 3;
+            transactionIdLabel.Text = "Transaction ID: 10";
+            transactionIdLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label27
+            // transactionTitleLabel
             // 
-            label27.AutoSize = true;
-            label27.Dock = DockStyle.Left;
-            label27.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label27.ForeColor = Color.White;
-            label27.Location = new Point(3, 0);
-            label27.Name = "label27";
-            label27.Size = new Size(89, 25);
-            label27.TabIndex = 1;
-            label27.Text = "Items (x)";
-            label27.TextAlign = ContentAlignment.MiddleLeft;
+            transactionTitleLabel.AutoSize = true;
+            transactionTitleLabel.Dock = DockStyle.Left;
+            transactionTitleLabel.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            transactionTitleLabel.ForeColor = Color.White;
+            transactionTitleLabel.Location = new Point(3, 0);
+            transactionTitleLabel.Name = "transactionTitleLabel";
+            transactionTitleLabel.Size = new Size(89, 24);
+            transactionTitleLabel.TabIndex = 1;
+            transactionTitleLabel.Text = "Items (x)";
+            transactionTitleLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // Admin
             // 
@@ -1028,30 +1059,30 @@
             splitContainer1.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
-            tabControl1.ResumeLayout(false);
+            SidebarDataList.ResumeLayout(false);
+            TabControlPanel.ResumeLayout(false);
             UserPage.ResumeLayout(false);
-            tableLayoutPanel5.ResumeLayout(false);
+            userLayoutPanel.ResumeLayout(false);
             tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel7.ResumeLayout(false);
             tableLayoutPanel8.ResumeLayout(false);
             tableLayoutPanel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)userPictureBox).EndInit();
             tableLayoutPanel9.ResumeLayout(false);
             tableLayoutPanel9.PerformLayout();
             tableLayoutPanel10.ResumeLayout(false);
             tableLayoutPanel10.PerformLayout();
             productPage.ResumeLayout(false);
-            tableLayoutPanel11.ResumeLayout(false);
+            productLayoutPanel.ResumeLayout(false);
             tableLayoutPanel12.ResumeLayout(false);
             tableLayoutPanel13.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productPictureBox).EndInit();
             tableLayoutPanel14.ResumeLayout(false);
             tableLayoutPanel14.PerformLayout();
             TransactionPage.ResumeLayout(false);
-            tableLayoutPanel15.ResumeLayout(false);
+            transactionLayoutPanel.ResumeLayout(false);
             tableLayoutPanel16.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)transactionItemDataGrid).EndInit();
             tableLayoutPanel17.ResumeLayout(false);
             tableLayoutPanel17.PerformLayout();
             ResumeLayout(false);
@@ -1066,7 +1097,7 @@
         private TableLayoutPanel tableLayoutPanel3;
         private Label SideBarTitle;
         private FlowLayoutPanel SidebarDataList;
-        private TabControl tabControl1;
+        private TabControl TabControlPanel;
         private TabPage UserPage;
         private TabPage productPage;
         private Label label2;
@@ -1075,54 +1106,55 @@
         private Label label3;
         private PictureBox logoutIcon;
         private TabPage TransactionPage;
-        private TableLayoutPanel tableLayoutPanel5;
+        private TableLayoutPanel userLayoutPanel;
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel7;
         private TableLayoutPanel tableLayoutPanel8;
-        private Label label5;
         private Label label1;
-        private PictureBox pictureBox1;
-        private Label label6;
-        private Label label4;
+        private PictureBox userPictureBox;
+        private Label userIdLabel;
         private Panel panel2;
         private FlowLayoutPanel flowLayoutPanel2;
         private Button addBtn;
         private Button EditBtn;
         private Button DeleteBtn;
         private TableLayoutPanel tableLayoutPanel9;
-        private Label label8;
+        private Label userTotalTransactionLabel;
         private Label label7;
         private TableLayoutPanel tableLayoutPanel10;
-        private Label label14;
+        private Label userContactLabel;
         private Label label13;
-        private Label label16;
+        private Label userPermanentAddressLabel;
         private Label label15;
-        private Label label18;
+        private Label userCurrentAddressLabel;
         private Label label17;
-        private Label label12;
+        private Label userGenderLabel;
         private Label label11;
-        private Label label10;
+        private Label userFullnameLabel;
         private Label label9;
-        private TableLayoutPanel tableLayoutPanel11;
+        private TableLayoutPanel productLayoutPanel;
         private TableLayoutPanel tableLayoutPanel12;
         private TableLayoutPanel tableLayoutPanel13;
-        private Panel panel3;
-        private Button button5;
-        private PictureBox pictureBox2;
+        private PictureBox productPictureBox;
         private TableLayoutPanel tableLayoutPanel14;
-        private Label label19;
+        private Label productIdLabel;
         private Label label21;
-        private TableLayoutPanel tableLayoutPanel15;
+        private TableLayoutPanel transactionLayoutPanel;
         private TableLayoutPanel tableLayoutPanel16;
-        private DataGridView dataGridView1;
-        private Label label22;
+        private DataGridView transactionItemDataGrid;
+        private Label productNameLabel;
         private Label label20;
-        private Label label24;
+        private Label productPriceLabel;
         private Label label23;
-        private Label label26;
+        private Label productAvailabilityLabel;
         private Label label25;
         private TableLayoutPanel tableLayoutPanel17;
-        private Label label29;
-        private Label label27;
+        private Label transactionIdLabel;
+        private Label transactionTitleLabel;
+        private Components.AdminSideBarItem adminSideBarItem1;
+        private Label usernameLabel;
+        private Label label5;
+        private Label userRoleLabel;
+        private Label label28;
     }
 }

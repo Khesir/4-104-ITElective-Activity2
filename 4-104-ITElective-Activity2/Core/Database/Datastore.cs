@@ -26,5 +26,12 @@ namespace _4_104_ITElective_Activity2.Core.Database
             conn.Open();
             return conn;
         }
+
+        protected async Task<MySqlConnection> GetConnectionAsync()
+        {
+            var conn = new MySqlConnection(_connectionString);
+            await conn.OpenAsync();
+            return conn;
+        }
     }
 }

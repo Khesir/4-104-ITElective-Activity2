@@ -28,10 +28,14 @@ namespace _4_104_ITElective_Activity2.forms
 
             InitializeTransactionGrid();
             EventBus.Subscribe<UpdateTransactionItemDTO>(OnItemAdded);
-            EventBus.Subscribe<LoadItemsResultDTO>(OnItemsLoaded);
 
-            // 3. Now publish — ProductService is subscribed and ready
-            EventBus.Publish(new LoadItemsRequestDTO());
+            LoadProducts();
+        }
+
+        private async void LoadProducts()
+        {
+            var products = await _productService.GetAllProductsAsync();
+            LoadProductCards(products);
         }
         #region Additional UI Setup
         public void InitializeTransactionGrid()
@@ -134,12 +138,11 @@ namespace _4_104_ITElective_Activity2.forms
             e.Handled = true;
         }
         #endregion
-        private void OnItemsLoaded(LoadItemsResultDTO result)
+        private void LoadProductCards(List<Product> products)
         {
-            // Clear the designer placeholder cards and build real ones from DB
             flowLayoutPanel2.Controls.Clear();
 
-            foreach (var product in result.Items)
+            foreach (var product in products)
             {
                 var card = new ProductCard
                 {
@@ -150,7 +153,7 @@ namespace _4_104_ITElective_Activity2.forms
                     Cursor    = Cursors.Hand,
                 };
 
-                var captured = product; // capture for closure
+                var captured = product;
                 card.RegisterClickHandler((s, e) => OnProductCardClicked(captured));
 
                 flowLayoutPanel2.Controls.Add(card);
@@ -197,7 +200,6 @@ namespace _4_104_ITElective_Activity2.forms
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             EventBus.Unsubscribe<UpdateTransactionItemDTO>(OnItemAdded);
-            EventBus.Unsubscribe<LoadItemsResultDTO>(OnItemsLoaded);
             base.OnFormClosed(e);
         }
 

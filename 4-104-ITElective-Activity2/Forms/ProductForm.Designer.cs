@@ -30,31 +30,31 @@
         {
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            label7 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            button1 = new Button();
             tableLayoutPanel4 = new TableLayoutPanel();
             pictureBox1 = new PictureBox();
             tableLayoutPanel5 = new TableLayoutPanel();
-            panel1 = new Panel();
-            Chance = new Button();
-            label10 = new Label();
-            label2 = new Label();
+            formPriceTxtBox = new TextBox();
+            formProductnameTxtBox = new TextBox();
             label4 = new Label();
+            label2 = new Label();
+            label10 = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
             checkBox1 = new CheckBox();
-            textBox5 = new TextBox();
-            textBox1 = new TextBox();
+            panel1 = new Panel();
+            Change = new Button();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            formTitle = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            actionBtn = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tableLayoutPanel5.SuspendLayout();
-            panel1.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
+            panel1.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -88,55 +88,6 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 89.9497452F));
             tableLayoutPanel2.Size = new Size(588, 398);
             tableLayoutPanel2.TabIndex = 0;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(label7, 0, 0);
-            tableLayoutPanel3.Controls.Add(flowLayoutPanel1, 1, 0);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 3);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.Size = new Size(582, 34);
-            tableLayoutPanel3.TabIndex = 0;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Dock = DockStyle.Left;
-            label7.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(3, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(197, 34);
-            label7.TabIndex = 4;
-            label7.Text = "Create | Edit Product";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Controls.Add(button1);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
-            flowLayoutPanel1.Location = new Point(294, 3);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(285, 28);
-            flowLayoutPanel1.TabIndex = 5;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(107, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(175, 27);
-            button1.TabIndex = 7;
-            button1.Text = "Create New Product";
-            button1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel4
             // 
@@ -172,8 +123,8 @@
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45.2107277F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 297F));
-            tableLayoutPanel5.Controls.Add(textBox1, 1, 1);
-            tableLayoutPanel5.Controls.Add(textBox5, 1, 0);
+            tableLayoutPanel5.Controls.Add(formPriceTxtBox, 1, 1);
+            tableLayoutPanel5.Controls.Add(formProductnameTxtBox, 1, 0);
             tableLayoutPanel5.Controls.Add(label4, 0, 2);
             tableLayoutPanel5.Controls.Add(label2, 0, 1);
             tableLayoutPanel5.Controls.Add(label10, 0, 0);
@@ -188,49 +139,21 @@
             tableLayoutPanel5.Size = new Size(431, 140);
             tableLayoutPanel5.TabIndex = 1;
             // 
-            // panel1
+            // formPriceTxtBox
             // 
-            panel1.Controls.Add(Chance);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 149);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(139, 30);
-            panel1.TabIndex = 2;
+            formPriceTxtBox.Dock = DockStyle.Bottom;
+            formPriceTxtBox.Location = new Point(137, 69);
+            formPriceTxtBox.Name = "formPriceTxtBox";
+            formPriceTxtBox.Size = new Size(291, 23);
+            formPriceTxtBox.TabIndex = 19;
             // 
-            // Chance
+            // formProductnameTxtBox
             // 
-            Chance.Location = new Point(29, 3);
-            Chance.Name = "Chance";
-            Chance.Size = new Size(75, 23);
-            Chance.TabIndex = 0;
-            Chance.Text = "Change";
-            Chance.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Dock = DockStyle.Bottom;
-            label10.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.ForeColor = Color.White;
-            label10.Location = new Point(3, 33);
-            label10.Name = "label10";
-            label10.Size = new Size(128, 17);
-            label10.TabIndex = 8;
-            label10.Text = "Product Name:";
-            label10.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Dock = DockStyle.Bottom;
-            label2.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(3, 78);
-            label2.Name = "label2";
-            label2.Size = new Size(128, 17);
-            label2.TabIndex = 10;
-            label2.Text = "Price";
-            label2.TextAlign = ContentAlignment.MiddleRight;
+            formProductnameTxtBox.Dock = DockStyle.Bottom;
+            formProductnameTxtBox.Location = new Point(137, 24);
+            formProductnameTxtBox.Name = "formProductnameTxtBox";
+            formProductnameTxtBox.Size = new Size(291, 23);
+            formProductnameTxtBox.TabIndex = 18;
             // 
             // label4
             // 
@@ -245,6 +168,32 @@
             label4.TabIndex = 12;
             label4.Text = "Available:";
             label4.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Dock = DockStyle.Bottom;
+            label2.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(3, 78);
+            label2.Name = "label2";
+            label2.Size = new Size(128, 17);
+            label2.TabIndex = 10;
+            label2.Text = "Price";
+            label2.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Dock = DockStyle.Bottom;
+            label10.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.White;
+            label10.Location = new Point(3, 33);
+            label10.Name = "label10";
+            label10.Size = new Size(128, 17);
+            label10.TabIndex = 8;
+            label10.Text = "Product Name:";
+            label10.TextAlign = ContentAlignment.MiddleRight;
             // 
             // flowLayoutPanel2
             // 
@@ -268,21 +217,74 @@
             checkBox1.Text = "(Check if available)";
             checkBox1.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // panel1
             // 
-            textBox5.Dock = DockStyle.Bottom;
-            textBox5.Location = new Point(137, 24);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(291, 23);
-            textBox5.TabIndex = 18;
+            panel1.Controls.Add(Change);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 149);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(139, 30);
+            panel1.TabIndex = 2;
             // 
-            // textBox1
+            // Change
             // 
-            textBox1.Dock = DockStyle.Bottom;
-            textBox1.Location = new Point(137, 69);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(291, 23);
-            textBox1.TabIndex = 19;
+            Change.Location = new Point(29, 3);
+            Change.Name = "Change";
+            Change.Size = new Size(75, 23);
+            Change.TabIndex = 0;
+            Change.Text = "Change";
+            Change.UseVisualStyleBackColor = true;
+            Change.Click += Change_Click;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(formTitle, 0, 0);
+            tableLayoutPanel3.Controls.Add(flowLayoutPanel1, 1, 0);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(3, 3);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.Size = new Size(582, 34);
+            tableLayoutPanel3.TabIndex = 0;
+            // 
+            // formTitle
+            // 
+            formTitle.AutoSize = true;
+            formTitle.Dock = DockStyle.Left;
+            formTitle.Font = new Font("Courier New", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            formTitle.ForeColor = Color.White;
+            formTitle.Location = new Point(3, 0);
+            formTitle.Name = "formTitle";
+            formTitle.Size = new Size(197, 34);
+            formTitle.TabIndex = 4;
+            formTitle.Text = "Create | Edit Product";
+            formTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(actionBtn);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel1.Location = new Point(294, 3);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(285, 28);
+            flowLayoutPanel1.TabIndex = 5;
+            // 
+            // actionBtn
+            // 
+            actionBtn.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            actionBtn.Location = new Point(107, 3);
+            actionBtn.Name = "actionBtn";
+            actionBtn.Size = new Size(175, 27);
+            actionBtn.TabIndex = 7;
+            actionBtn.Text = "Create New Product";
+            actionBtn.UseVisualStyleBackColor = true;
+            actionBtn.Click += actnBtn_Click;
             // 
             // ProductForm
             // 
@@ -295,16 +297,16 @@
             Text = "ProductForm";
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
-            panel1.ResumeLayout(false);
             flowLayoutPanel2.ResumeLayout(false);
             flowLayoutPanel2.PerformLayout();
+            panel1.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -313,20 +315,20 @@
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
-        private Label label7;
+        private Label formTitle;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button button1;
+        private Button actionBtn;
         private TableLayoutPanel tableLayoutPanel4;
         private PictureBox pictureBox1;
         private TableLayoutPanel tableLayoutPanel5;
         private Panel panel1;
-        private Button Chance;
+        private Button Change;
         private Label label4;
         private Label label2;
         private Label label10;
         private FlowLayoutPanel flowLayoutPanel2;
         private CheckBox checkBox1;
-        private TextBox textBox1;
-        private TextBox textBox5;
+        private TextBox formPriceTxtBox;
+        private TextBox formProductnameTxtBox;
     }
 }

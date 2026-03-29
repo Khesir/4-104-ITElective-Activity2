@@ -50,6 +50,49 @@ namespace _4_104_ITElective_Activity2.modules.transactionItem
             return list;
         }
 
+        public async Task InsertAllAsync(int transactionId, List<TransactionItem> items)
+        {
+            if (items.Count == 0) return;
+
+            const string sql = @"
+                INSERT INTO transaction_items
+                    (transaction_id, product_id, name, cup_size, price, quantity, total_price)
+                VALUES
+                    (@transactionId, @productId, @name, @cupSize, @price, @quantity, @totalPrice)";
+
+            using var conn = await GetConnectionAsync();
+            foreach (var item in items)
+            {
+                using var cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@transactionId", transactionId);
+                cmd.Parameters.AddWithValue("@productId",     item.itemId);
+                cmd.Parameters.AddWithValue("@name",          item.name);
+                cmd.Parameters.AddWithValue("@cupSize",       TransactionItem.cupSizeToString(item.cupSize));
+                cmd.Parameters.AddWithValue("@price",         item.price);
+                cmd.Parameters.AddWithValue("@quantity",      item.quantity);
+                cmd.Parameters.AddWithValue("@totalPrice",    item.totalPrice);
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
+        public async Task<List<TransactionItem>> SelectByTransactionIdAsync(int transactionId)
+        {
+            const string sql = @"
+                SELECT id, product_id, name, cup_size, price, quantity, total_price
+                FROM transaction_items
+                WHERE transaction_id = @transactionId
+                ORDER BY id";
+
+            using var conn   = await GetConnectionAsync();
+            using var cmd    = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@transactionId", transactionId);
+
+            using var reader = (MySqlDataReader)await cmd.ExecuteReaderAsync();
+            var list = new List<TransactionItem>();
+            while (await reader.ReadAsync()) list.Add(Map(reader));
+            return list;
+        }
+
         private static TransactionItem Map(MySqlDataReader r) => new TransactionItem
         {
             id       = r.GetInt32("id"),

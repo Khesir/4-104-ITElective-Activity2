@@ -30,8 +30,26 @@ namespace _4_104_ITElective_Activity2.modules.transaction
             return id;
         }
 
+        public async Task<int> SaveAsync(Transaction transaction)
+        {
+            int id = await _txDatastore.InsertAsync(transaction);
+            await _itemDatastore.InsertAllAsync(id, transaction.items);
+            return id;
+        }
+
         public Transaction? GetById(int id) => _txDatastore.SelectById(id);
 
+        public Task<Transaction?> GetByIdAsync(int id) => _txDatastore.SelectByIdAsync(id);
+
         public List<Transaction> GetAll() => _txDatastore.SelectAll();
+
+        public Task<List<Transaction>> GetAllAsync() => _txDatastore.SelectAllAsync();
+
+        public int GetTransactionCountByUser(int userId) => _txDatastore.CountByUserId(userId);
+
+        public Task<int> GetTransactionCountByUserAsync(int userId) => _txDatastore.CountByUserIdAsync(userId);
+
+        public Task<List<TransactionItem>> GetItemsByTransactionIdAsync(int transactionId)
+            => _itemDatastore.SelectByTransactionIdAsync(transactionId);
     }
 }

@@ -86,6 +86,75 @@ namespace _4_104_ITElective_Activity2.modules.item
             cmd.ExecuteNonQuery();
         }
 
+        public async Task<int> InsertAsync(Product p)
+        {
+            const string sql = @"
+                INSERT INTO products (name, price, image_path)
+                VALUES (@name, @price, @imagePath);
+                SELECT LAST_INSERT_ID();";
+
+            using var conn = await GetConnectionAsync();
+            using var cmd  = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@name",      p.name);
+            cmd.Parameters.AddWithValue("@price",     p.price);
+            cmd.Parameters.AddWithValue("@imagePath", p.imagePath);
+
+            return Convert.ToInt32(await cmd.ExecuteScalarAsync());
+        }
+
+        public async Task<List<Product>> SelectAllAsync()
+        {
+            const string sql = "SELECT id, name, price, image_path, is_available FROM products ORDER BY id";
+
+            using var conn   = await GetConnectionAsync();
+            using var cmd    = new MySqlCommand(sql, conn);
+            using var reader = (MySqlDataReader)await cmd.ExecuteReaderAsync();
+
+            var list = new List<Product>();
+            while (await reader.ReadAsync())
+                list.Add(Map(reader));
+            return list;
+        }
+
+        public async Task<Product?> SelectByIdAsync(int id)
+        {
+            const string sql = "SELECT id, name, price, image_path, is_available FROM products WHERE id = @id LIMIT 1";
+
+            using var conn   = await GetConnectionAsync();
+            using var cmd    = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            using var reader = (MySqlDataReader)await cmd.ExecuteReaderAsync();
+            return await reader.ReadAsync() ? Map(reader) : null;
+        }
+
+        public async Task UpdateAsync(Product p)
+        {
+            const string sql = @"
+                UPDATE products
+                SET name = @name, price = @price, image_path = @imagePath, is_available = @isAvailable
+                WHERE id = @id";
+
+            using var conn = await GetConnectionAsync();
+            using var cmd  = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id",          p.id);
+            cmd.Parameters.AddWithValue("@name",        p.name);
+            cmd.Parameters.AddWithValue("@price",       p.price);
+            cmd.Parameters.AddWithValue("@imagePath",   p.imagePath);
+            cmd.Parameters.AddWithValue("@isAvailable", p.isAvailable);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            const string sql = "DELETE FROM products WHERE id = @id";
+
+            using var conn = await GetConnectionAsync();
+            using var cmd  = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
         private static Product Map(MySqlDataReader r) => new Product(
             r.GetString("name"),
             r.GetDouble("price"),

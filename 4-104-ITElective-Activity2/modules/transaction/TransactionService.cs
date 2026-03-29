@@ -18,5 +18,14 @@ namespace _4_104_ITElective_Activity2.modules.transaction
             //EventBus.Subscribe<LoadTransactionsRequestDTO>(HandleLoadTransactions);
         }
         public List<Transaction> GetAllTransactions() => _repository.GetAll();
+
+        public Task<List<Transaction>> GetAllTransactionsAsync() => _repository.GetAllAsync();
+
+        public int GetTransactionCountByUser(int userId) => _repository.GetTransactionCountByUser(userId);
+
+        public Task<int> GetTransactionCountByUserAsync(int userId) => _repository.GetTransactionCountByUserAsync(userId);
+
+        public Task<List<TransactionItem>> GetItemsByTransactionIdAsync(int transactionId)
+            => _repository.GetItemsByTransactionIdAsync(transactionId);
     }
 }
