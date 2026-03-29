@@ -32,9 +32,9 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            addBtn = new Button();
+            EditBtn = new Button();
+            DeleteBtn = new Button();
             label2 = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             ClockLabel = new Label();
@@ -56,7 +56,6 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            button1 = new Button();
             tableLayoutPanel9 = new TableLayoutPanel();
             label8 = new Label();
             label7 = new Label();
@@ -112,7 +111,6 @@
             tableLayoutPanel7.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
             tableLayoutPanel10.SuspendLayout();
             productPage.SuspendLayout();
@@ -173,41 +171,41 @@
             // 
             // flowLayoutPanel2
             // 
-            flowLayoutPanel2.Controls.Add(button2);
-            flowLayoutPanel2.Controls.Add(button3);
-            flowLayoutPanel2.Controls.Add(button4);
+            flowLayoutPanel2.Controls.Add(addBtn);
+            flowLayoutPanel2.Controls.Add(EditBtn);
+            flowLayoutPanel2.Controls.Add(DeleteBtn);
             flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.Location = new Point(3, 46);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(495, 26);
             flowLayoutPanel2.TabIndex = 4;
             // 
-            // button2
+            // addBtn
             // 
-            button2.Location = new Point(3, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 0;
-            button2.Text = "Add";
-            button2.UseVisualStyleBackColor = true;
+            addBtn.Location = new Point(3, 3);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(75, 23);
+            addBtn.TabIndex = 0;
+            addBtn.Text = "Add";
+            addBtn.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // EditBtn
             // 
-            button3.Location = new Point(84, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 1;
-            button3.Text = "Edit";
-            button3.UseVisualStyleBackColor = true;
+            EditBtn.Location = new Point(84, 3);
+            EditBtn.Name = "EditBtn";
+            EditBtn.Size = new Size(75, 23);
+            EditBtn.TabIndex = 1;
+            EditBtn.Text = "Edit";
+            EditBtn.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // DeleteBtn
             // 
-            button4.Location = new Point(165, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 2;
-            button4.Text = "Delete";
-            button4.UseVisualStyleBackColor = true;
+            DeleteBtn.Location = new Point(165, 3);
+            DeleteBtn.Name = "DeleteBtn";
+            DeleteBtn.Size = new Size(75, 23);
+            DeleteBtn.TabIndex = 2;
+            DeleteBtn.Text = "Delete";
+            DeleteBtn.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -487,21 +485,11 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(button1);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(3, 163);
             panel2.Name = "panel2";
             panel2.Size = new Size(178, 45);
             panel2.TabIndex = 2;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(36, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(105, 23);
-            button1.TabIndex = 0;
-            button1.Text = "Change Profile";
-            button1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel9
             // 
@@ -1048,7 +1036,6 @@
             tableLayoutPanel8.ResumeLayout(false);
             tableLayoutPanel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
             tableLayoutPanel9.ResumeLayout(false);
             tableLayoutPanel9.PerformLayout();
             tableLayoutPanel10.ResumeLayout(false);
@@ -1098,11 +1085,10 @@
         private Label label6;
         private Label label4;
         private Panel panel2;
-        private Button button1;
         private FlowLayoutPanel flowLayoutPanel2;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button addBtn;
+        private Button EditBtn;
+        private Button DeleteBtn;
         private TableLayoutPanel tableLayoutPanel9;
         private Label label8;
         private Label label7;
