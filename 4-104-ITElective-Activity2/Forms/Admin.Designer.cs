@@ -94,6 +94,7 @@
             tableLayoutPanel17 = new TableLayoutPanel();
             transactionIdLabel = new Label();
             transactionTitleLabel = new Label();
+            generateReportBtn = new Button();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -1002,6 +1003,7 @@
             tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 226F));
             tableLayoutPanel17.Controls.Add(transactionIdLabel, 2, 0);
             tableLayoutPanel17.Controls.Add(transactionTitleLabel, 0, 0);
+            tableLayoutPanel17.Controls.Add(generateReportBtn, 1, 0);
             tableLayoutPanel17.Dock = DockStyle.Fill;
             tableLayoutPanel17.Location = new Point(3, 3);
             tableLayoutPanel17.Name = "tableLayoutPanel17";
@@ -1035,9 +1037,24 @@
             transactionTitleLabel.TabIndex = 1;
             transactionTitleLabel.Text = "Items (x)";
             transactionTitleLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
+            //
+            // generateReportBtn
+            //
+            generateReportBtn.Anchor = AnchorStyles.None;
+            generateReportBtn.BackColor = Color.FromArgb(255, 213, 79);
+            generateReportBtn.FlatStyle = FlatStyle.Flat;
+            generateReportBtn.FlatAppearance.BorderSize = 0;
+            generateReportBtn.Font = new Font("Courier New", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            generateReportBtn.ForeColor = Color.FromArgb(7, 48, 43);
+            generateReportBtn.Name = "generateReportBtn";
+            generateReportBtn.Size = new Size(140, 22);
+            generateReportBtn.TabIndex = 4;
+            generateReportBtn.Text = "Generate Report";
+            generateReportBtn.UseVisualStyleBackColor = false;
+            generateReportBtn.Click += generateReportBtn_Click;
+            //
             // Admin
-            // 
+            //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(11, 58, 52);
@@ -1151,6 +1168,7 @@
         private TableLayoutPanel tableLayoutPanel17;
         private Label transactionIdLabel;
         private Label transactionTitleLabel;
+        private Button generateReportBtn;
         private Components.AdminSideBarItem adminSideBarItem1;
         private Label usernameLabel;
         private Label label5;

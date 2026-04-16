@@ -7,6 +7,7 @@ using _4_104_ITElective_Activity2.Core.Util;
 using _4_104_ITElective_Activity2.modules.item;
 using _4_104_ITElective_Activity2.modules.transaction;
 using _4_104_ITElective_Activity2.Modules.User;
+using _4_104_ITElective_Activity2.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -246,6 +247,21 @@ namespace _4_104_ITElective_Activity2.Forms
                 EventBus.Publish(new LogoutSignal { signal = true });
                 this.Close();
 
+            }
+        }
+
+        private async void generateReportBtn_Click(object sender, EventArgs e)
+        {
+            generateReportBtn.Enabled = false;
+            generateReportBtn.Text = "Generating...";
+            try
+            {
+                await AllOrdersReportHelper.ShowAsync();
+            }
+            finally
+            {
+                generateReportBtn.Enabled = true;
+                generateReportBtn.Text = "Generate Report";
             }
         }
 

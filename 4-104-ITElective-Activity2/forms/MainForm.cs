@@ -7,6 +7,7 @@ using _4_104_ITElective_Activity2.modules.item;
 using _4_104_ITElective_Activity2.modules.transaction;
 using _4_104_ITElective_Activity2.modules.transactionItem;
 using _4_104_ITElective_Activity2.Modules.User;
+using _4_104_ITElective_Activity2.Reports;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
@@ -364,18 +365,25 @@ namespace _4_104_ITElective_Activity2.forms
         {
             if (_transactionItems.Count == 0) return;
 
-            var session = AppStore.Get<UserSession>();
+            var session      = AppStore.Get<UserSession>();
+            var itemsSnapshot = _transactionItems.ToList();
+            double total      = itemsSnapshot.Sum(i => i.GetTotalPrice());
 
-            await _transactionService.SaveTransactionAsync(new SaveTransactionDTO
+            int transactionId = await _transactionService.SaveTransactionAsync(new SaveTransactionDTO
             {
                 UserId = session?.Id,
-                Items  = _transactionItems.ToList(),
+                Items  = itemsSnapshot,
             });
 
             paymentTextBox.Text = "";
             _transactionItemService.ClearCart();
 
-            MessageBox.Show("Payment confirmed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ReceiptReportHelper.Show(
+                transactionId,
+                DateTime.Now,
+                session?.Username ?? "Unknown",
+                itemsSnapshot,
+                total);
         }
     }
 }
